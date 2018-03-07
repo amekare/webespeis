@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como programar un microcontrolador stm32 con cpp | JáquerEspeis</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../../rss.xml">
+<link rel="canonical" href="http://jaquerespeis.org/posts/postsprogramar20microcontrolador20stm322/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="JáquerEspeis">
+<link rel="prev" href="../laferiacr/" title="laferia.cr" type="text/html">
+<link rel="next" href="../instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/" title="Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04" type="text/html">
+<meta property="og:site_name" content="JáquerEspeis">
+<meta property="og:title" content="Como programar un microcontrolador stm32 con cpp">
+<meta property="og:url" content="http://jaquerespeis.org/posts/postsprogramar20microcontrolador20stm322/">
+<meta property="og:description" content="Que se necesita
+
+Microcontrolador STM322
+GDB o un debugger, editor de texto o IDE
+Una maquina con Linux
+
+Requerimientos con Gnu/Linux
+
+arm-none-eabi-gcc – The GNU Compiler Collection – cross compilado">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2015-12-28T05:12:00-06:00">
+<meta property="article:tag" content="arm">
+<meta property="article:tag" content="cpp">
+<meta property="article:tag" content="jaquerespeis">
+<meta property="article:tag" content="stm32">
+<link rel="alternate" hreflang="en" href="../../en/posts/postsprogramar20microcontrolador20stm322/">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://jaquerespeis.org/">
+
+                <span id="blog-title">JáquerEspeis</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../stories/calendario">Calendario</a>
+                </li>
+<li>
+<a href="../../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../../categories/">Categorías</a>
+                </li>
+<li>
+<a href="../../rss.xml">Canal RSS</a>
+
+                
+            </li>
+</ul>
+<!-- DuckDuckGo custom search --><form method="get" id="search" action="https://duckduckgo.com/" class="navbar-form pull-left">
+<input type="hidden" name="sites" value="http://jaquerespeis.org/"><input type="hidden" name="k8" value="#444444"><input type="hidden" name="k9" value="#D51920"><input type="hidden" name="kt" value="h"><input type="text" name="q" maxlength="255" placeholder="Search…" class="span2" style="margin-top: 4px;"><input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+</form>
+<!-- End of custom search -->
+
+
+            <ul class="nav navbar-nav navbar-right">
+<li>
+            </li>
+<li><a href="http://jaquerespeis.org/en/" rel="alternate" hreflang="en">English</a></li>
+
+                
+                    
+    <li>
+    <a href="index.src.html" id="sourcelink">Código fuente</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Como programar un microcontrolador stm32 con cpp</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2015-12-28T05:12:00-06:00" itemprop="datePublished" title="2015-12-28 05:12">2015-12-28 05:12</time></a></p>
+            
+        <p class="sourceline"><a href="index.src.html" class="sourcelink">Código fuente</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h2>Que se necesita</h2>
+<ul>
+<li>Microcontrolador STM322</li>
+<li>GDB o un debugger, editor de texto o IDE</li>
+<li>Una maquina con Linux</li>
+</ul>
+<h2>Requerimientos con Gnu/Linux</h2>
+<ul>
+<li>arm-none-eabi-gcc – The GNU Compiler Collection – cross compilador para ARM EABI (directo en el procesador)</li>
+<li>arm-none-eabi-gdb – The GNU Debugger for the ARM EABI (bare-metal) target</li>
+<li>arm-none-eabi-binutils – A set of programs to assemble and manipulate binary and object files for the ARM EABI (bare-metal) target</li>
+<li>openocd – Debugging, in-system programming and boundary-scan testing for embedded target devices</li>
+<li>vim – Editor de texto</li>
+</ul>
+<h2>Terminos importantes</h2>
+<p>CMSIS = Cortex Microcontroller Software Interface Standard <a href="http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php">info</a></p>
+<h2>Referencias</h2>
+<p>http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/arm/" rel="tag">arm</a></li>
+            <li><a class="tag p-category" href="../../categories/cpp/" rel="tag">cpp</a></li>
+            <li><a class="tag p-category" href="../../categories/jaquerespeis/" rel="tag">jaquerespeis</a></li>
+            <li><a class="tag p-category" href="../../categories/stm32/" rel="tag">stm32</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../laferiacr/" rel="prev" title="laferia.cr">Publicación anterior</a>
+            </li>
+            <li class="next">
+                <a href="../instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/" rel="next" title="Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04">Siguiente publicación</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>Publicado bajo una licencia <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.
+ - Creado con <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(1, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

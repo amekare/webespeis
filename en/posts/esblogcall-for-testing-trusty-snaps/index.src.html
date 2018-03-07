@@ -1,0 +1,56 @@
+<html><body><div><p>There is a huge announcement coming: snaps now run in Ubuntu 14.04 Trusty Tahr.</p>
+<p>Take a moment to note how big this is. Ubuntu 14.04 is a long-term release that
+will be supported until 2019. Ubuntu 16.04 is also a long-term release that
+will be supported until 2021. We have many many many users in both releases,
+some of which will stay there until we drop the support. Before this snappy new
+world, all those users were stuck with the versions of all their programs
+released in 2014 or 2016, getting only updates for security and critical
+issues. Just try to remember how your favorite program looked 5 years ago;
+maybe it didn't even exist. We were used to choose between stability and cool
+new features.</p>
+<p>Well, a new world is possible. With snaps you can have a stable base system
+with frequent updates for every program, without the risk of breaking your
+machine. And now if you are a Trusty user, you can just start taking advantage
+of all this. If you are a developer, you have to prepare only one release and
+it will just work in all the supported Ubuntu releases.</p>
+<p>Awesome, right? The Ubuntu devs have been doing a great job. snapd has already
+landed in the Trusty archive, and we have been running many manual and
+automated tests on it. So we would like now to invite the community to test it,
+explore weird paths, try to break it. We will appreciate it very much, but all
+of those Trusty users out there will love it, when they receive loads of new
+high quality free software on their oldie machines.</p>
+<p>So, how to get started?</p>
+<p>If you are already running Trusty, you will just have to install snapd:</p>
+<pre class="code literal-block"><span></span>$ sudo apt update <span class="o">&amp;&amp;</span> sudo apt install snapd
+</pre>
+
+
+<p>Reboot your system after that in case you had a kernel update pending, and to
+get the paths for the new snap binaries set up.</p>
+<p>If you are running a different Ubuntu release, you can
+<a href="http://elopio.net/blog/install-ubuntu-in-vm/">Install Ubuntu in a virtual machine</a>.
+Just make sure that you install the
+<a href="http://elopio.net/es/blog/call-for-testing-trusty-snaps/14.04%20iso">http://releases.ubuntu.com/14.04/ubuntu-14.04.5-desktop-amd64.iso</a>.</p>
+<p>Once you have Trusty with snapd ready, try a few commands:</p>
+<pre class="code literal-block"><span></span>$ snap list
+$ sudo snap install hello-world
+$ hello-world
+$ snap find something
+</pre>
+
+
+<p><a href="https://archive.org/download/elopio-screenshots2/trusty/trusty-snaps-bigger.png"><img alt="screenshot of snaps running in Trusty" src="https://archive.org/download/elopio-screenshots2/trusty/trusty-snaps-bigger.png"></a></p>
+<p>Keep searching for snaps until you find one that's interesting. Install it,
+try it, and let us know how it goes.</p>
+<p>If you find something wrong, please
+<a href="https://bugs.launchpad.net/snapd/+filebug">report a bug</a> with the <code>trusty</code>
+tag. If you are new to the Ubuntu community or get lost on the way, come and
+join us in <a href="https://rocket.ubuntu.com/channel/community">Rocket Chat</a>.</p>
+<p>And after a good session of testing, sit down, relax, and get ohmygiraffe. With
+love from <a href="https://twitter.com/popey">popey</a>:</p>
+<pre class="code literal-block"><span></span>$ sudo snap install ohmygiraffe
+$ ohmygiraffe
+</pre>
+
+
+<p><a href="https://archive.org/download/elopio-screenshots2/trusty/ohmygiraffe.png"><img alt="screenshot of ohmygiraffe" src="https://archive.org/download/elopio-screenshots2/trusty/ohmygiraffe.png"></a></p></div></body></html>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JáquerEspeis (Publicaciones sobre Firma digital)</title><link>http://jaquerespeis.org/</link><description></description><atom:link href="http://jaquerespeis.org/categories/firma-digital.xml" rel="self" type="application/rss+xml"></atom:link><language>es</language><copyright>Contents © 2018 &lt;a href="mailto:jaquerespeis@googlegroups.com"&gt;JáquerEspeis&lt;/a&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;Publicado bajo una licencia &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International&lt;/a&gt;.
+</copyright><lastBuildDate>Wed, 07 Mar 2018 22:01:27 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Cómo instalar Firma Digital de Costa Rica en GNU/Linux Fedora 27</title><link>http://jaquerespeis.org/posts/instalar-firma-digital-costa-rica-linux-fedora/</link><dc:creator>JáquerEspeis</dc:creator><description>&lt;p&gt;Esta guía documenta cómo instalar el controlador de la tarjeta de Firma Digital de Costa Rica y la jerarquía de certificados del Banco Central (SINPE) y del MICITT en el sistema operativo Fedora de arquitectura Intel de 64 bits (x86_64).&lt;/p&gt;
+&lt;p&gt;El motivo de esta nueva guía de instalación tenía los siguientes propósitos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Configurar de la forma más sencilla y adecuada el sistema para que funcione con la mayor cantidad de programas.&lt;/li&gt;
+&lt;li&gt;Lograr que funcione para todos los usuarios del sistema, incluyendo los nuevos usuarios creados tras las instalación.&lt;/li&gt;
+&lt;li&gt;Funcionar con servicios obsoletos como el de la CCSS (con applet Java) en el navegador Icecat.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Instalación de las dependencias&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Instalar el soporte CCID de PC/SC para que reconozca el lector de tarjetas y el plugin NPAPI IcedTea-Web para poder cargar el applet Java que permite firmar desde el navegador Icecat (Firefox ya no soporta applets Java) y OpenJFX si pretende instalarse el firmador del Banco Central:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# dnf -y install pcsc-lite-ccid icedtea-web icecat java-1.8.0-openjdk-openjfx
+
+# systemctl start pcscd.socket
+&lt;/pre&gt;
+&lt;h2&gt;Descarga del “instalador”&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Descargar el “instalador” en el desplegable llamado “Usuarios Linux” en la página de descarga de instaladores del sitio web de &lt;a href="https://www.soportefirmadigital.com/"&gt;Soporte Firma Digital de Costa Rica&lt;/a&gt;, introduciendo el número de serie de la tarjeta y el captcha.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Desempaquetado del “instalador”&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Descomprimir el archivo zip descargado con &lt;kbd&gt;unzip&lt;/kbd&gt;, en el momento de escribir esta documentación se llama &lt;kbd&gt;sfd_ClientesLinux_Rev09.zip&lt;/kbd&gt;. Se creará una carpeta llamada &lt;kbd&gt;Firma Digital&lt;/kbd&gt;. Se asume que el archivo zip se ha descargado en la carpeta &lt;kbd&gt;Descargas&lt;/kbd&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+$ cd ~/Descargas
+
+$ unzip sfd_ClientesLinux_Rev09.zip
+&lt;/pre&gt;
+&lt;h2&gt;Instalación de los certificados&lt;/h2&gt;
+&lt;p&gt;Es necesario agregar a la lista de confianza la jerarquía de certificados del SINPE y del MICITT. Para ello, un par de comandos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copiar los certificados:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# cp ~/Descargas/Firma\ Digital/Certificados/* /usr/share/pki/ca-trust-source/anchors/
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Regenerar los archivos de certificados para todas las aplicaciones:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# update-ca-trust
+&lt;/pre&gt;
+&lt;h2&gt;Instalación del módulo PKCS#11&lt;/h2&gt;
+&lt;p&gt;Aunque hay un módulo en el directorio &lt;kbd&gt;Librerías&lt;/kbd&gt;, no es la versión más reciente y tiene varios defectos de enlazado. La versión distribuida en el paquete PinTool es más reciente y funciona correctamente en todos los programas probados. En el siguiente proceso se extrae y se instala conservando la fecha original de la librería y con los permisos correctos de usuario y de SELinux.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Instalar el módulo PKCS#11 propietario en &lt;kbd&gt;/usr/lib64/pkcs11&lt;/kbd&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+$ cd ~/Descargas/Firma\ Digital/PinTool/IDProtect\ PINTool\ 6.41.01/RPM
+
+$ rpm2cpio idprotectclient-641.01-0.x86_64.rpm | cpio -dim ./usr/lib/x64-athena/libASEP11.so
+&lt;/pre&gt;
+&lt;pre&gt;
+# mv usr/lib/x64-athena/libASEP11.so /usr/lib64/pkcs11/
+
+# chown root:root /usr/lib64/pkcs11/libASEP11.so
+
+# chmod 755 /usr/lib64/pkcs11/libASEP11.so
+
+# chcon system_u:object_r:lib_t:s0 /usr/lib64/pkcs11/libASEP11.so
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear los siguientes enlaces simbólicos (necesarios para que funcionen algunos programas y applets):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# ln -s /usr/lib64/pkcs11/libASEP11.so /usr/lib64/
+
+# ln -s /usr/lib64/pkcs11/libASEP11.so /usr/lib/
+
+# mkdir -p /usr/lib/x64-athena/
+
+# ln -s /usr/lib64/pkcs11/libASEP11.so /usr/lib/x64-athena/
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Si se va a trabajar con el applet de la CCSS se puede realizar el siguiente paso opcional:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# mkdir -p /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/lib64/pkcs11/libASEP11.so /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/share/pki/ca-trust-source/anchors/ /Firma_Digital/CERTIFICADOS
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear el fichero /etc/Athena/IDPClientDB.xml y abrirlo para edición:
+&lt;/li&gt;&lt;/ul&gt;
+&lt;pre&gt;
+# mkdir /etc/Athena/
+
+# gedit /etc/Athena/IDPClientDB.xml
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:
+&lt;/li&gt;&lt;/ul&gt;
+&lt;pre&gt;&amp;lt;?xml version="1.0" encoding="utf-8" ?&amp;gt;
+&amp;lt;IDProtect&amp;gt;
+ &amp;lt;TokenLibs&amp;gt;
+  &amp;lt;IDProtect&amp;gt;
+   &amp;lt;Cards&amp;gt;
+    &amp;lt;IDProtectXF&amp;gt;
+     &amp;lt;ATR type='hexBinary'&amp;gt;3BDC00FF8091FE1FC38073C821106600000000000000&amp;lt;/ATR&amp;gt;
+     &amp;lt;ATRMask type='hexBinary'&amp;gt;FFFF00FFF0FFFFFFFFFFFFFFFFF0FF00000000000000&amp;lt;/ATRMask&amp;gt;
+    &amp;lt;/IDProtectXF&amp;gt;
+   &amp;lt;/Cards&amp;gt;
+  &amp;lt;/IDProtect&amp;gt;
+ &amp;lt;/TokenLibs&amp;gt;
+&amp;lt;/IDProtect&amp;gt;
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear un fichero llamado &lt;kbd&gt;/etc/pkcs11/modules/firmadigital.module&lt;/kbd&gt; y abrirlo para edición:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# gedit /etc/pkcs11/modules/firmadigital.module
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:
+&lt;/li&gt;&lt;/ul&gt;
+&lt;pre&gt;
+module: libASEP11.so
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Ejecutar el siguiente comando para reemplazar el enlace simbólico a &lt;kbd&gt;libnssckbi&lt;/kbd&gt; para que haga uso de &lt;kbd&gt;p11-kit-proxy&lt;/kbd&gt; de forma prioritaria:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# alternatives --install /usr/lib64/libnssckbi.so libnssckbi.so.x86_64 /usr/lib64/p11-kit-proxy.so 50
+&lt;/pre&gt;
+&lt;p&gt;Eso es todo. Es necesario reiniciar Firefox, Evolution y cualquier otra aplicación que use certificados para que se apliquen los cambios. Si se ha insertado el lector y la tarjeta al lector, estas aplicaciones preguntarán por el PIN, lo que indicará que se la instalación ha sido exitosa.&lt;/p&gt;
+&lt;p&gt;Si el componente de firma del Banco Central está instalado debería funcionar para poder realizar la prueba de firma. El sitio web de Soporte Firma Digital podría usar todavía la prueba de Java y en este caso solamente funciona con el navegador Icecat. Icecat incluye varias extensiones que bloquean JavaScript y hay que desactivarlas para poder navegar en la mayoría de sitios y para poder firmar. En la página de prueba de firma con Java, si a la hora de firmar aparece en el navegador que se quiere ejecutar “IcedTea-Web”, hay que permitirlo. Si el navegador hace preguntas sobre el applet responder afirmativamente y aceptar a todos los cuadros de mensaje que aparezcan e ingresar el PIN cuando lo solicite.&lt;/p&gt;</description><category>Firma digital</category><category>Software libre</category><guid>http://jaquerespeis.org/posts/instalar-firma-digital-costa-rica-linux-fedora/</guid><pubDate>Thu, 14 Sep 2017 08:09:09 GMT</pubDate></item><item><title>Instaladores de Firma Digital de Costa Rica para GNU/Linux</title><link>http://jaquerespeis.org/posts/instaladores-de-firma-digital-de-costa-rica-para-gnu-linux/</link><dc:creator>JáquerEspeis</dc:creator><description>&lt;p&gt;Este proyecto de instaladores se ha creado en conjunto con &lt;a href="https://solvosoft.com/" target="_blank"&gt;Luis Zárate&lt;/a&gt; para facilitar la instalación de las herramientas necesarias de Firma Digital de Costa Rica en distribuciones GNU/Linux. Se trata de un desarrollo no oficial, creado voluntariamente para mejorar el soporte en diversas distribuciones este sistema operativo, inicialmente para Debian y Ubuntu y próximamente para Fedora, CentOS, openSUSE y Arch.&lt;/p&gt;
+&lt;p&gt;El mecanismo para instalar los instaladores se realiza mediante un repositorio. Esto permite facilitar la instalación de los paquetes y poder recibir actualizaciones de los mismos de la misma manera que el resto de software del sistema.&lt;/p&gt;
+&lt;p&gt;Los instaladores configuran el sistema para agregar confianza a los certificados de la jerarquía nacional en los diferentes programas que hacen uso de almacenes de certificados (NSS de Mozilla, OpenSSL, GnuTLS y Java), así como el controlador del lector de tarjetas y también el módulo para poder manejar la tarjeta de Firma Digital.&lt;/p&gt;
+&lt;p&gt;Basados en parte en las guías previas con diversas mejoras, se ha verificado que tras la instalación del paquete se pueden utilizar servicios de Firma Digital y se listan las autoridades de certificados de la jerarquía nacional en software como Mozilla Firefox, Mozilla Thunderbird, Chromium/Chrome, Evolution, Seahorse (contraseñas y claves) y aplicaciones Java.&lt;/p&gt;
+&lt;p&gt;Las instrucciones de instalación están disponibles en el sitio web &lt;a href="http://repos.solvosoft.com/" target="_blank"&gt;repos.solvosoft.com&lt;/a&gt;.&lt;/p&gt;</description><category>Firma digital</category><category>Software libre</category><guid>http://jaquerespeis.org/posts/instaladores-de-firma-digital-de-costa-rica-para-gnu-linux/</guid><pubDate>Sun, 25 Dec 2016 05:12:45 GMT</pubDate></item><item><title>Soluciones modernas para usar firma digital desde la web</title><link>http://jaquerespeis.org/posts/soluciones-modernas-para-usar-firma-digital-desde-la-web/</link><dc:creator>JáquerEspeis</dc:creator><description>&lt;p&gt;En el mundo de los estándares web no ha habido ni hay (por ahora) un mecanismo que permita acceder a dispositivos de seguridad para poder firmar digitalmente. Mientras avanzan los &lt;a href="https://w3c.github.io/webcrypto/KeyDiscovery.html"&gt;esfuerzos&lt;/a&gt; en este sentido y con cierto retraso, en estos años han existido diversas formas no estándar para poder firmar, siendo todas ellas soluciones propietarias de cada navegador o bien utilizando tecnologías de complementos. Una de las más extendidas por su portabilidad era un firmador en Java utilizando applets, pero esta tecnología se está eliminando de los navegadores modernos y también siendo eliminada en futuras versiones de Java.&lt;/p&gt;
+&lt;p&gt;En la actualidad hay navegadores modernos como Edge que no disponen de ninguna forma de agregar complementos que permitan ejecutar código privilegiado y hasta la fecha &lt;a href="https://wpdev.uservoice.com/forums/257854-microsoft-edge-developer/suggestions/13612338-native-messaging"&gt;no hay planes todavía&lt;/a&gt; para ello. Estos cambios fuerzan a utilizar formas más ingeniosas para resolver este problema de falta de interacción de sistemas de firma digital con los nuevos navegadores.&lt;/p&gt;
+&lt;p&gt;Afortunadamente existe una posible solución para comunicar sitios web con el hardware sin necesidad de complementos especiales en el navegador. La empresa que desarrolla y mantiene el proyecto DSS utiliza una técnica sencilla pero eficaz, mediante una aplicación de escritorio que ejecuta un servicio escuchando en un puerto en particular que tiene privilegios para acceder a los dispositivos de firma digital, los sitios web pueden comunicarse con este servicio local y enviarle la información que debe ser firmada y el resto del proceso se realiza en el lado de la web. Una de las aplicaciones existentes que utilizan esta técnica es software libre y se llama NexU, el cual se ha integrado en DSS a partir de la reciente versión 4.7.0, la cual ha decidido utlilizarla como reemplazo a los obsolescentes applets y JNLP.&lt;/p&gt;
+&lt;h2&gt;Demostración de firma sin complementos de navegador&lt;/h2&gt;
+&lt;p&gt;En el momento de escribir esto, he encontrado en línea una &lt;a href="http://dss.agid.gov.it/nexu"&gt;instalación de la WebApp de DSS 4.7&lt;/a&gt; para poder probar NexU, que una vez descargado hay que ejecutar el jar que contiene el zip y recargar la página de la webapp, que detectará que se está ejecutando y el botón de formulario &lt;code&gt;Install NexU&lt;/code&gt; cambiará a &lt;code&gt;Submit&lt;/code&gt;. Para ejecutar el jar en GNU/Linux hay que tener instalado OpenJFX, que se explica en una entrada de blog previa. Para probarlo se puede desde una terminal mediante &lt;code&gt;java -jar nexu.jar&lt;/code&gt; y manteniendo la terminal abierta. Para verificar que el servicio está ejecutándose correctamente se puede ingresar en el navegador en el sitio &lt;code&gt;http://localhost:9776/nexu-info&lt;/code&gt;, donde debería aparecer un pequeño objeto JSON con la versión de la aplicación.&lt;/p&gt;
+&lt;h3&gt;El problema del contenido mixto&lt;/h3&gt;
+&lt;p&gt;El sitio web enlazado podría funcionar con HTTPS y el servicio local con HTTP, por lo que los navegadores modernos suelen bloquear esta comunicación. En Chromium aparece el icono de un escudo en la parte derecha de la barra de direcciones, donde haciendo clic se puede permitir la carga insegura y en Firefox aparece un candado verde con un triángulo gris con una exclamación, donde haciendo clic y a continuación en la parte derecha donde aparece un símbolo “&amp;gt;” se puede deshabilitar la carga insegura y finalmente el sitio web podrá acceder al servicio local.&lt;/p&gt;
+&lt;p&gt;A partir de las versiones 1.6.x de NexU se soporta HTTPS, una solución a este problema sería modificar la WebApp de DSS para que conecte a local por HTTPS y que exista un certificado para un host local, confiado e instalado en la máquina para que permita el acceso seguro a localhost y evitar el inconveniente del contenido mixto. La versión de NexU que sugiere DSS de momento es la 1.3, que no soporta HTTPS, por lo que debe descargarse la 1.6.2 o la 1.7 aparte y hacer los ajustes necesarios a DSS. En cualquier caso si bien la confianza SSL a localhost &lt;a href="https://cabforum.org/pipermail/public/2015-June/005673.html"&gt;no se puede realizar con autoridades de certificación públicas&lt;/a&gt;, disponer de un nombre de host apuntando a 127.0.0.1 con una CA autofirmada, creada en la propia máquina, instalada y confiada y con ella firmando un certificado (para luego desechar la clave privada de la CA por seguridad) evita este problema. Otra opción sería usar un servidor seguro intermedio que se comunique con la aplicación de escritorio y el sitio web por backend, aunque esta opción también es relativamente compleja y requiere configuración a una dirección específica que haga conexión permanente desde la aplicación que accede a la tarjeta y mantener la comunicación abierta mientras esté el firmador en ejecución, pero esta solución requiere infraestructura adicional y la misma herramienta se alejaría de ser multipropósito sin previa actualización de la configuración.&lt;/p&gt;
+&lt;h2&gt;Escenario ideal&lt;/h2&gt;
+&lt;p&gt;Si bien esta solución es relativamente nueva y requiere algunos ajustes de configuración y previamente instalar la herramienta de acceso a la tarjeta, se perfila como una solución viable para poder realizar firma digital en la web de manera interoperable y multiplataforma. La posibilidad de que existieran actualizaciones a los instaladores de Firma Digital actuales del país contemplando la preinstalación de una herramienta de este estilo abriría la posibilidad de poder integrar esta solución en sistemas Windows, GNU/Linux y macOS y de que las instituciones adoptaran este mecanismo para solucionar el problema con los navegadores modernos.&lt;/p&gt;</description><category>Firma digital</category><category>Software libre</category><guid>http://jaquerespeis.org/posts/soluciones-modernas-para-usar-firma-digital-desde-la-web/</guid><pubDate>Thu, 10 Nov 2016 00:11:09 GMT</pubDate></item><item><title>Cómo firmar documentos PDF con firma digital de Costa Rica con software libre</title><link>http://jaquerespeis.org/posts/como-firmar-documentos-pdf-con-firma-digital-de-costa-rica-con-software-libre/</link><dc:creator>JáquerEspeis</dc:creator><description>&lt;p&gt;La &lt;a href="http://www.mifirmadigital.go.cr/wp-content/uploads/2016/03/DCFD-Poli%CC%81tica-de-Formato-Oficial-v1.0.pdf"&gt;Política de Formatos Oficiales de los Documentos Electrónicos Firmados Digitalmente&lt;/a&gt; de Costa Rica especifica el tipo de documentos y su formato de firma digital. En el caso de PDF se utiliza un estándar especificado en Europa para firma digital avanzada (AdES) y en el caso de los PDF se llama PAdES. En el documento oficial enlazado previamente se muestra que tiene que soportar PAdES-LTV (permite la validación de forma longeva) y sugiere que se use el perfil Baseline. El asunto es que no hay mucho software libre en el mercado que permita la firma digital avanzada en PDF, sin embargo la propia Comisión Europea tiene un proyecto para ello (Digital Signature Services), que es un conjunto de librerías y herramientas en Java que permiten trabajar con firma digital con los estándares europeos, incluyendo soporte para PDF.&lt;/p&gt;
+&lt;p&gt;Hasta no hace mucho tiempo, una de las pocas implementaciones libres para trabajar con firma digital avanzada en PDF era iText, sin embargo este proyecto cambió de licencia y las condiciones de uso contradecían la propia licencia, además de presuntas incompatibilidades en contribuciones del código por parte de terceros que la hacían incompatible con la nueva licencia. Afortunadamente, el proyecto DSS (usando Apache PDFBox como alternativa a iText) permite firmar documentos PDF cumpliendo con la política de formatos oficiales nacional.&lt;/p&gt;
+&lt;h2&gt;Instalación en GNU/Linux&lt;/h2&gt;
+&lt;p&gt;Existe un firmador en formato independiente que funciona en el escritorio. Se puede descargar &lt;a href="https://joinup.ec.europa.eu/dss-webapp/downloads/dss-app.zip"&gt;DSS standalone app package 5.1&lt;/a&gt; (este es el más reciente en el momento de escribir esta entrada de blog).&lt;/p&gt;
+&lt;p&gt;Una vez descargado, descomprimir el archivo, contendrá dss-app.jar y un par de scripts para lanzar el jar de forma sencilla. El firmador que hay dentro del jar utiliza por defecto un servidor TSA europeo, para cambiarlo habrá que modificar un fichero que hay dentro del jar en la ruta spring/applicationContext.xml y buscar el texto: &lt;code&gt;http://tsa.belgium.be/connect&lt;/code&gt; para reemplazarlo por el siguiente: &lt;code&gt;http://tsa.sinpe.fi.cr/tsahttp/&lt;/code&gt; y guardarlo modificado con este cambio dentro del archivo jar (un archivo jar es un archivo zip realmente).&lt;/p&gt;
+&lt;p&gt;Para poder ejecutar este jar en GNU/Linux se necesita el JRE de OpenJDK 8 y además OpenJFX 8 (JavaFX). En Fedora &lt;code&gt;sudo dnf -y install java-1.8.0-openjdk-openjfx&lt;/code&gt; y en Ubuntu se puede instalar con &lt;code&gt;sudo apt -y install openjfx&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Una vez instaladas las dependencias de Java, se puede ejecutar desde la terminal en la carpeta donde se haya descomprimido con &lt;code&gt;sh dss-run.sh&lt;/code&gt; o bien con &lt;code&gt;java -jar dss-app.jar&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Aparecerá una ventana como la siguiente:&lt;br&gt;
+&lt;img class="alignnone size-medium wp-image-63" src="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-14-57-51.png" alt="Firmador DSS configurado" srcset="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-14-57-51.png 650w, https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-14-57-51-300x179.png 300w" sizes="(max-width: 650px) 100vw, 650px"&gt;&lt;/p&gt;
+&lt;h2&gt;Firmado de un documento PDF&lt;/h2&gt;
+&lt;p&gt;En fichero a firmar (&lt;code&gt;File to sign&lt;/code&gt;) se selecciona el documento PDF que se desea firmar digitalmente.&lt;/p&gt;
+&lt;p&gt;En formato de firma (&lt;code&gt;Signature format&lt;/code&gt;) se debe elegir PAdES porque se trata de un PDF.&lt;/p&gt;
+&lt;p&gt;En PAdES solamente existe el formato envuelto (&lt;code&gt;Enveloped&lt;/code&gt;), por lo que este campo lo selecciona automáticamente.&lt;/p&gt;
+&lt;p&gt;En el nivel (&lt;code&gt;Level&lt;/code&gt;) se elige el nivel de perfil de PAdES. PAdES-BASELINE-LTA es el equivalente a PAdES-LTV.&lt;/p&gt;
+&lt;p&gt;En algoritmo de resumen hash encriptado (&lt;code&gt;Digest algorithm&lt;/code&gt;) se recomienda que sea como mínimo de tipo SHA-2, en la imagen de ejemplo se ha seleccionado SHA-512.&lt;/p&gt;
+&lt;p&gt;En &lt;code&gt;Signature token API&lt;/code&gt; se tiene que seleccionar &lt;code&gt;PKCS #11&lt;/code&gt;, entonces se desplegará &lt;code&gt;PKCS #11 library&lt;/code&gt; donde hay que especificar dónde está la librería del módulo de Firma Digital (libASEP11.so).&lt;/p&gt;
+&lt;p&gt;En contraseña (&lt;code&gt;Password&lt;/code&gt;) se ingresa el PIN de la tarjeta de Firma Digital.&lt;/p&gt;
+&lt;p&gt;Cuando se presione sobre &lt;code&gt;Sign&lt;/code&gt; se iniciará el proceso de firmado y tras unos segundos aparecerá una ventana para guardar el PDF generado en la ubicación que se desee.&lt;/p&gt;
+&lt;p&gt;Eso es todo. El documento PDF ya tiene una firma válida en el país.&lt;/p&gt;
+&lt;h2&gt;Demostración de documento válido generado&lt;/h2&gt;
+&lt;p&gt;Esta imagen muestra que la firma generada es válida en la aplicación Acrobat Reader DC:&lt;/p&gt;
+&lt;p&gt;&lt;img class="alignnone size-medium wp-image-64" src="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14.png" alt="Validando firma en Adobe Reader" srcset="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14.png 1024w, https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14-300x190.png 300w, https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14-768x485.png 768w" sizes="(max-width: 1024px) 100vw, 1024px"&gt;&lt;/p&gt;
+&lt;p&gt;Existen formas de validar la firma del documento PDF con software libre (para no tener que usar Acrobat Reader DC como en este ejemplo), pero se explicará en próximas entradas de blog.&lt;/p&gt;
+&lt;p&gt;Aunque este firmador no tiene campo de estampa visible (“firma visible”), la política de documento oficial no indica que el documento requiera disponer este detalle visual en los PDF.&lt;/p&gt;</description><category>Firma digital</category><category>Software libre</category><guid>http://jaquerespeis.org/posts/como-firmar-documentos-pdf-con-firma-digital-de-costa-rica-con-software-libre/</guid><pubDate>Tue, 08 Nov 2016 03:11:42 GMT</pubDate></item><item><title>Cómo autenticarse en el Módulo de Firma Digital de la CCSS en GNU/Linux</title><link>http://jaquerespeis.org/posts/como-autenticarse-en-el-modulo-de-firma-digital-de-la-ccss-en-gnulinux/</link><dc:creator>JáquerEspeis</dc:creator><description>&lt;p&gt;El &lt;a href="https://aissfa.ccss.sa.cr/ModuloFirmaDigital/"&gt;Módulo de Firma Digital&lt;/a&gt; de la Caja Costarricense de Seguro Social en la actualidad utiliza la tecnología Java mediante el (obsolescente) sistema de plug-ins NPAPI de navegador para autenticarse en el sitio y poder así acceder a diversos servicios en línea.&lt;/p&gt;
+&lt;p&gt;Este sitio tiene unos requerimientos particulares para los usuarios de sistemas operativos GNU/Linux que no resultan obvios sino más bien confusos. Si se ha instalado el sistema de Firma Digital de Costa Rica, esta página sigue sin funcionar y muestra un error con el mensaje:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;Se ha generado un error en el certificado. Por favor verifique que la libreria PKCS11 se encuentra en la ruta: /usr/local/lib/libASEP11.so&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Este mensaje no significa lo que aparenta: copiar la librería en esa ruta no servirá de nada, de hecho el applet no la lee de ahí, probablemente sea un mensaje que se usaba para código en desuso actualmente. Este mensaje de error realmente aparece porque no encuentra los certificados de la jerarquía de las autoridades certificadoras en una ruta del sistema específica.&lt;/p&gt;
+&lt;p&gt;Para solucionar este problema hay que crear los siguientes directorios en la raíz del sistema de ficheros:&lt;/p&gt;
+&lt;pre&gt;sudo mkdir -p /Firma_Digital/CERTIFICADOS/&lt;/pre&gt;
+&lt;p&gt;El applet java de la CCSS no lee datos del certstore (JKS) de Java, y en su lugar los lee de esa ruta específica en el caso de GNU/Linux y macOS, así que los certificados de la jerarquía CA hay que copiarlos allí solo para el uso de este applet en particular.&lt;/p&gt;
+&lt;p&gt;Asumiendo que se ha descargado el fichero instalador de la web de soportefirmadigital y se ha descomprimido el zip en la carpeta Descargas de nuestro usuario, para copiarlos allí sería:&lt;/p&gt;
+&lt;pre&gt;sudo cp ~/Descargas/Firma\ Digital/Certificados/* /Firma_Digital/CERTIFICADOS/&lt;/pre&gt;
+&lt;p&gt;Con este paso el applet ya no mostraría este error pero todavía no encontraría la librería. Hay que crear otra carpeta donde ubicar la librería:&lt;/p&gt;
+&lt;pre&gt;sudo mkdir /Firma_Digital/LIBRERIAS/&lt;/pre&gt;
+&lt;p&gt;Y la copiamos ahí o creamos un enlace simbólico desde otra que tengamos en otro lugar del sistema de ficheros. En este ejemplo se copiará de la que se descomprimió del zip de soportefirmadigital:&lt;/p&gt;
+&lt;pre&gt;sudo cp ~/Descargas/Firma\ Digital/Librería/x64/libASEP11.so /Firma_Digital/LIBRERIAS/&lt;/pre&gt;
+&lt;p&gt;Si se usa un GNU/Linux de 32 bit hay que cambiar el x64 anterior por x86 en la línea anterior.&lt;/p&gt;
+&lt;p&gt;Eso es todo. Ahora el applet de la página debería preguntar por el PIN y permitir seleccionar el certificado del usuario para poder autenticarse.&lt;/p&gt;</description><category>Firma digital</category><category>Software libre</category><guid>http://jaquerespeis.org/posts/como-autenticarse-en-el-modulo-de-firma-digital-de-la-ccss-en-gnulinux/</guid><pubDate>Wed, 02 Nov 2016 04:11:40 GMT</pubDate></item><item><title>Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04</title><link>http://jaquerespeis.org/posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/</link><dc:creator>JáquerEspeis</dc:creator><description>&lt;p&gt;Esta guía documenta cómo instalar el controlador de la tarjeta de Firma Digital de Costa Rica y la jerarquía de certificados del Banco Central (SINPE) y del MICITT en el sistema operativo Ubuntu 16.04 de arquitectura Intel de 64 bits (x86_64).&lt;/p&gt;
+&lt;p&gt;El motivo de esta nueva guía de instalación tenía los siguientes propósitos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Configurar de la forma más sencilla y adecuada el sistema para que funcione con la mayor cantidad de programas.&lt;/li&gt;
+&lt;li&gt;Lograr que funcione para todos los usuarios del sistema, incluyendo los nuevos usuarios creados tras las instalación.&lt;/li&gt;
+&lt;li&gt;Superar la prueba de firma digital (con applet Java) en el sitio web de Soporte Firma Digital con el navegador Mozilla Firefox (solamente funciona hasta la versión 52 ESR).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Instalación de las dependencias&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Instalar el soporte CCID de PC/SC para que reconozca el lector de tarjetas y el plugin NPAPI IcedTea-Web para poder cargar el applet Java que permite firmar desde el navegador Firefox:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo apt -y install pcscd icedtea-plugin
+&lt;/pre&gt;
+&lt;h2&gt;Descarga del “instalador”&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Descargar el “instalador” en el desplegable llamado “Usuarios Linux” en la página de descarga de instaladores del sitio web de &lt;a href="https://www.soportefirmadigital.com/"&gt;Soporte Firma Digital de Costa Rica&lt;/a&gt;, introduciendo el número de serie de la tarjeta y el captcha.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Descomprimir el archivo zip descargado con &lt;kbd&gt;unzip&lt;/kbd&gt;, en el momento de escribir esta documentación se llama &lt;kbd&gt;sfd_ClientesLinux_Rev09.zip&lt;/kbd&gt;. Se creará una carpeta llamada &lt;kbd&gt;Firma Digital&lt;/kbd&gt;. Se asume que el archivo zip se ha descargado en la carpeta &lt;kbd&gt;Descargas&lt;/kbd&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+cd ~/Descargas
+
+unzip sfd_ClientesLinux_Rev09.zip
+&lt;/pre&gt;
+&lt;h2&gt;Instalación de los certificados&lt;/h2&gt;
+&lt;p&gt;Es necesario agregar a la lista de confianza la jerarquía de certificados del SINPE y del MICITT. Para ello, un conjunto de comandos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copiar los certificados:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo cp Descargas/Firma\ Digital/Certificados/* /usr/local/share/ca-certificates/
+
+sudo rename.ul .cer .crt /usr/local/share/ca-certificates/*.cer
+
+for file in /usr/local/share/ca-certificates/*.crt; do sudo openssl x509 -inform DER -in "$file" -out "$file"; done 2&amp;gt;/dev/null
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Regenerar los archivos de certificados para todas las aplicaciones:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo update-ca-certificates --fresh
+&lt;/pre&gt;
+&lt;h2&gt;Instalación del módulo PKCS#11&lt;/h2&gt;
+&lt;p&gt;Aunque hay un módulo en el directorio &lt;kbd&gt;Librerías&lt;/kbd&gt;, no es la versión más reciente y tiene varios defectos de enlazado. La versión distribuida en el paquete PinTool es más reciente y funciona correctamente en todos los programas probados. En el siguiente proceso se extrae y se instala conservando la fecha original de la librería y con los permisos correctos de usuario.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Instalar el módulo PKCS#11 propietario en &lt;kbd&gt;/usr/lib/pkcs11&lt;/kbd&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+cd ~/Descargas/Firma\ Digital/PinTool/IDProtect\ PINTool\ 6.41.01/DEB
+
+ar p idprotectclient_641.01-0_amd64.deb data.tar.gz | tar zx ./usr/lib/x64-athena/libASEP11.so
+
+sudo mv usr/lib/x64-athena/libASEP11.so /usr/lib/x86_64-linux-gnu/pkcs11/
+
+sudo chown root:root /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear los siguientes enlaces simbólicos (necesarios para que funcionen algunos programas y applets):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/x86_64-linux-gnu/
+
+sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/
+
+sudo mkdir -p /usr/lib/x64-athena/
+
+sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/x64-athena/
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Si se va a trabajar con el applet de la CCSS se puede realizar el siguiente paso opcional:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+# mkdir -p /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/local/share/ca-certificates/ /Firma_Digital/CERTIFICADOS
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear el fichero /etc/Athena/IDPClientDB.xml y abrirlo para edición:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo mkdir /etc/Athena/
+
+sudo gedit /etc/Athena/IDPClientDB.xml
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&amp;lt;?xml version="1.0" encoding="utf-8" ?&amp;gt;
+&amp;lt;IDProtect&amp;gt;
+ &amp;lt;TokenLibs&amp;gt;
+  &amp;lt;IDProtect&amp;gt;
+   &amp;lt;Cards&amp;gt;
+    &amp;lt;IDProtectXF&amp;gt;
+     &amp;lt;ATR type='hexBinary'&amp;gt;3BDC00FF8091FE1FC38073C821106600000000000000&amp;lt;/ATR&amp;gt;
+     &amp;lt;ATRMask type='hexBinary'&amp;gt;FFFF00FFF0FFFFFFFFFFFFFFFFF0FF00000000000000&amp;lt;/ATRMask&amp;gt;
+    &amp;lt;/IDProtectXF&amp;gt;
+   &amp;lt;/Cards&amp;gt;
+  &amp;lt;/IDProtect&amp;gt;
+ &amp;lt;/TokenLibs&amp;gt;
+&amp;lt;/IDProtect&amp;gt;
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear un fichero llamado &lt;kbd&gt;/etc/pkcs11/modules/firmadigital.module&lt;/kbd&gt; y abrirlo para edición:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo mkdir -p /etc/pkcs11/modules/
+
+sudo gedit /etc/pkcs11/modules/firmadigital.module
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;module: libASEP11.so
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear un fichero llamado &lt;kbd&gt;/usr/local/sbin/update-p11-kit-symlinks&lt;/kbd&gt; y abrirlo para edición:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo gedit /usr/local/sbin/update-p11-kit-symlinks
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;#!/bin/sh
+
+FIREFOX_LIB=/usr/lib/firefox/libnssckbi.so
+THUNDERBIRD_LIB=/usr/lib/thunderbird/libnssckbi.so
+
+if ! [ -L "$FIREFOX_LIB" ]
+then
+    echo "Firefox libnssckbi.so is not a symlink. Fixing..."
+    mv -f "$FIREFOX_LIB" "$FIREFOX_LIB".bak
+    ln -s /usr/lib/x86_64-linux-gnu/p11-kit-proxy.so "$FIREFOX_LIB"
+fi
+
+if ! [ -L "$THUNDERBIRD_LIB" ]
+then
+    echo "Thunderbird libnssckbi.so is not a symlink. Fixing..."
+    mv -f "$THUNDERBIRD_LIB" "$THUNDERBIRD_LIB".bak
+    ln -s /usr/lib/x86_64-linux-gnu/p11-kit-proxy.so "$THUNDERBIRD_LIB"
+fi
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Agregar el atributo de ejecutable al script:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo chmod +x /usr/local/sbin/update-p11-kit-symlinks
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Crear un fichero llamado &lt;kbd&gt;/etc/systemd/system/p11-kit-proxy-updater.service&lt;/kbd&gt; y abrirlo para edición:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;sudo gedit /etc/systemd/system/p11-kit-proxy-updater.service 
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;[Unit]
+Description=mantenimiento de enlaces a p11-kit-proxy
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/update-p11-kit-symlinks
+
+[Install]
+WantedBy=multi-user.target
+&lt;/pre&gt;
+&lt;p&gt;Activar el servicio al arranque y ejecutarlo una primera vez para comprobar que funciona:&lt;/p&gt;
+&lt;pre&gt;sudo systemctl enable p11-kit-proxy-updater.service
+
+sudo systemctl start p11-kit-proxy-updater.service
+&lt;/pre&gt;
+&lt;p&gt;Eso es todo. Es necesario reiniciar Firefox, Thunderbird y cualquier otra aplicación que use certificados para que se apliquen los cambios. Si se ha insertado el lector y la tarjeta al lector, estas aplicaciones preguntarán por el PIN, lo que indicará que se la instalación ha sido exitosa.&lt;/p&gt;
+&lt;p&gt;En Firefox (hasta la versión 51 y la 52 ESR) ya se puede ir a realizar la prueba en el enlace “Verificación de Capacidad de Firma” del sitio web de Soporte Firma Digital de Costa Rica mencionado anteriormente y debería pasarla con éxito. En el navegador aparecerá que se quiere ejecutar “IcedTea-Web”, hay que permitirlo. Si el navegador hace preguntas sobre el applet responder afirmativamente y aceptar a todos los cuadros de mensaje que aparezcan e ingresar el PIN cuando lo solicite.&lt;/p&gt;</description><category>Firma digital</category><category>Software libre</category><guid>http://jaquerespeis.org/posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/</guid><pubDate>Sat, 09 Jul 2016 02:07:05 GMT</pubDate></item></channel></rss>

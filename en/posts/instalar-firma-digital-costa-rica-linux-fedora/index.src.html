@@ -1,0 +1,129 @@
+<html><body><p>Esta guía documenta cómo instalar el controlador de la tarjeta de Firma Digital de Costa Rica y la jerarquía de certificados del Banco Central (SINPE) y del MICITT en el sistema operativo Fedora de arquitectura Intel de 64 bits (x86_64).</p>
+<p>El motivo de esta nueva guía de instalación tenía los siguientes propósitos:</p>
+<ul>
+<li>Configurar de la forma más sencilla y adecuada el sistema para que funcione con la mayor cantidad de programas.</li>
+<li>Lograr que funcione para todos los usuarios del sistema, incluyendo los nuevos usuarios creados tras las instalación.</li>
+<li>Funcionar con servicios obsoletos como el de la CCSS (con applet Java) en el navegador Icecat.</li>
+</ul>
+<h2>Instalación de las dependencias</h2>
+<ul>
+<li>Instalar el soporte CCID de PC/SC para que reconozca el lector de tarjetas y el plugin NPAPI IcedTea-Web para poder cargar el applet Java que permite firmar desde el navegador Icecat (Firefox ya no soporta applets Java) y OpenJFX si pretende instalarse el firmador del Banco Central:</li>
+</ul>
+<pre>
+# dnf -y install pcsc-lite-ccid icedtea-web icecat java-1.8.0-openjdk-openjfx
+
+# systemctl start pcscd.socket
+</pre>
+<h2>Descarga del “instalador”</h2>
+<ul>
+<li>Descargar el “instalador” en el desplegable llamado “Usuarios Linux” en la página de descarga de instaladores del sitio web de <a href="https://www.soportefirmadigital.com/">Soporte Firma Digital de Costa Rica</a>, introduciendo el número de serie de la tarjeta y el captcha.</li>
+</ul>
+<h2>Desempaquetado del “instalador”</h2>
+<ul>
+<li>Descomprimir el archivo zip descargado con <kbd>unzip</kbd>, en el momento de escribir esta documentación se llama <kbd>sfd_ClientesLinux_Rev09.zip</kbd>. Se creará una carpeta llamada <kbd>Firma Digital</kbd>. Se asume que el archivo zip se ha descargado en la carpeta <kbd>Descargas</kbd>:</li>
+</ul>
+<pre>
+$ cd ~/Descargas
+
+$ unzip sfd_ClientesLinux_Rev09.zip
+</pre>
+<h2>Instalación de los certificados</h2>
+<p>Es necesario agregar a la lista de confianza la jerarquía de certificados del SINPE y del MICITT. Para ello, un par de comandos:</p>
+<ul>
+<li>Copiar los certificados:</li>
+</ul>
+<pre>
+# cp ~/Descargas/Firma\ Digital/Certificados/* /usr/share/pki/ca-trust-source/anchors/
+</pre>
+<ul>
+<li>Regenerar los archivos de certificados para todas las aplicaciones:</li>
+</ul>
+<pre>
+# update-ca-trust
+</pre>
+<h2>Instalación del módulo PKCS#11</h2>
+<p>Aunque hay un módulo en el directorio <kbd>Librerías</kbd>, no es la versión más reciente y tiene varios defectos de enlazado. La versión distribuida en el paquete PinTool es más reciente y funciona correctamente en todos los programas probados. En el siguiente proceso se extrae y se instala conservando la fecha original de la librería y con los permisos correctos de usuario y de SELinux.</p>
+<ul>
+<li>Instalar el módulo PKCS#11 propietario en <kbd>/usr/lib64/pkcs11</kbd>:</li>
+</ul>
+<pre>
+$ cd ~/Descargas/Firma\ Digital/PinTool/IDProtect\ PINTool\ 6.41.01/RPM
+
+$ rpm2cpio idprotectclient-641.01-0.x86_64.rpm | cpio -dim ./usr/lib/x64-athena/libASEP11.so
+</pre>
+<pre>
+# mv usr/lib/x64-athena/libASEP11.so /usr/lib64/pkcs11/
+
+# chown root:root /usr/lib64/pkcs11/libASEP11.so
+
+# chmod 755 /usr/lib64/pkcs11/libASEP11.so
+
+# chcon system_u:object_r:lib_t:s0 /usr/lib64/pkcs11/libASEP11.so
+</pre>
+<ul>
+<li>Crear los siguientes enlaces simbólicos (necesarios para que funcionen algunos programas y applets):</li>
+</ul>
+<pre>
+# ln -s /usr/lib64/pkcs11/libASEP11.so /usr/lib64/
+
+# ln -s /usr/lib64/pkcs11/libASEP11.so /usr/lib/
+
+# mkdir -p /usr/lib/x64-athena/
+
+# ln -s /usr/lib64/pkcs11/libASEP11.so /usr/lib/x64-athena/
+</pre>
+<ul>
+<li>Si se va a trabajar con el applet de la CCSS se puede realizar el siguiente paso opcional:</li>
+</ul>
+<pre>
+# mkdir -p /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/lib64/pkcs11/libASEP11.so /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/share/pki/ca-trust-source/anchors/ /Firma_Digital/CERTIFICADOS
+</pre>
+<ul>
+<li>Crear el fichero /etc/Athena/IDPClientDB.xml y abrirlo para edición:
+</li></ul>
+<pre>
+# mkdir /etc/Athena/
+
+# gedit /etc/Athena/IDPClientDB.xml
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:
+</li></ul>
+<pre>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;IDProtect&gt;
+ &lt;TokenLibs&gt;
+  &lt;IDProtect&gt;
+   &lt;Cards&gt;
+    &lt;IDProtectXF&gt;
+     &lt;ATR type='hexBinary'&gt;3BDC00FF8091FE1FC38073C821106600000000000000&lt;/ATR&gt;
+     &lt;ATRMask type='hexBinary'&gt;FFFF00FFF0FFFFFFFFFFFFFFFFF0FF00000000000000&lt;/ATRMask&gt;
+    &lt;/IDProtectXF&gt;
+   &lt;/Cards&gt;
+  &lt;/IDProtect&gt;
+ &lt;/TokenLibs&gt;
+&lt;/IDProtect&gt;
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/etc/pkcs11/modules/firmadigital.module</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>
+# gedit /etc/pkcs11/modules/firmadigital.module
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:
+</li></ul>
+<pre>
+module: libASEP11.so
+</pre>
+<ul>
+<li>Ejecutar el siguiente comando para reemplazar el enlace simbólico a <kbd>libnssckbi</kbd> para que haga uso de <kbd>p11-kit-proxy</kbd> de forma prioritaria:</li>
+</ul>
+<pre>
+# alternatives --install /usr/lib64/libnssckbi.so libnssckbi.so.x86_64 /usr/lib64/p11-kit-proxy.so 50
+</pre>
+<p>Eso es todo. Es necesario reiniciar Firefox, Evolution y cualquier otra aplicación que use certificados para que se apliquen los cambios. Si se ha insertado el lector y la tarjeta al lector, estas aplicaciones preguntarán por el PIN, lo que indicará que se la instalación ha sido exitosa.</p>
+<p>Si el componente de firma del Banco Central está instalado debería funcionar para poder realizar la prueba de firma. El sitio web de Soporte Firma Digital podría usar todavía la prueba de Java y en este caso solamente funciona con el navegador Icecat. Icecat incluye varias extensiones que bloquean JavaScript y hay que desactivarlas para poder navegar en la mayoría de sitios y para poder firmar. En la página de prueba de firma con Java, si a la hora de firmar aparece en el navegador que se quiere ejecutar “IcedTea-Web”, hay que permitirlo. Si el navegador hace preguntas sobre el applet responder afirmativamente y aceptar a todos los cuadros de mensaje que aparezcan e ingresar el PIN cuando lo solicite.</p></body></html>

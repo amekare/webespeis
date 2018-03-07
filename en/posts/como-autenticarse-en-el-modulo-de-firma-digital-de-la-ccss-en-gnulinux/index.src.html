@@ -1,0 +1,15 @@
+<html><body><p>El <a href="https://aissfa.ccss.sa.cr/ModuloFirmaDigital/">Módulo de Firma Digital</a> de la Caja Costarricense de Seguro Social en la actualidad utiliza la tecnología Java mediante el (obsolescente) sistema de plug-ins NPAPI de navegador para autenticarse en el sitio y poder así acceder a diversos servicios en línea.</p>
+<p>Este sitio tiene unos requerimientos particulares para los usuarios de sistemas operativos GNU/Linux que no resultan obvios sino más bien confusos. Si se ha instalado el sistema de Firma Digital de Costa Rica, esta página sigue sin funcionar y muestra un error con el mensaje:</p>
+<blockquote><p>Se ha generado un error en el certificado. Por favor verifique que la libreria PKCS11 se encuentra en la ruta: /usr/local/lib/libASEP11.so</p></blockquote>
+<p>Este mensaje no significa lo que aparenta: copiar la librería en esa ruta no servirá de nada, de hecho el applet no la lee de ahí, probablemente sea un mensaje que se usaba para código en desuso actualmente. Este mensaje de error realmente aparece porque no encuentra los certificados de la jerarquía de las autoridades certificadoras en una ruta del sistema específica.</p>
+<p>Para solucionar este problema hay que crear los siguientes directorios en la raíz del sistema de ficheros:</p>
+<pre>sudo mkdir -p /Firma_Digital/CERTIFICADOS/</pre>
+<p>El applet java de la CCSS no lee datos del certstore (JKS) de Java, y en su lugar los lee de esa ruta específica en el caso de GNU/Linux y macOS, así que los certificados de la jerarquía CA hay que copiarlos allí solo para el uso de este applet en particular.</p>
+<p>Asumiendo que se ha descargado el fichero instalador de la web de soportefirmadigital y se ha descomprimido el zip en la carpeta Descargas de nuestro usuario, para copiarlos allí sería:</p>
+<pre>sudo cp ~/Descargas/Firma\ Digital/Certificados/* /Firma_Digital/CERTIFICADOS/</pre>
+<p>Con este paso el applet ya no mostraría este error pero todavía no encontraría la librería. Hay que crear otra carpeta donde ubicar la librería:</p>
+<pre>sudo mkdir /Firma_Digital/LIBRERIAS/</pre>
+<p>Y la copiamos ahí o creamos un enlace simbólico desde otra que tengamos en otro lugar del sistema de ficheros. En este ejemplo se copiará de la que se descomprimió del zip de soportefirmadigital:</p>
+<pre>sudo cp ~/Descargas/Firma\ Digital/Librería/x64/libASEP11.so /Firma_Digital/LIBRERIAS/</pre>
+<p>Si se usa un GNU/Linux de 32 bit hay que cambiar el x64 anterior por x86 en la línea anterior.</p>
+<p>Eso es todo. Ahora el applet de la página debería preguntar por el PIN y permitir seleccionar el certificado del usuario para poder autenticarse.</p></body></html>

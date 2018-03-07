@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04 | JáquerEspeis</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../../rss.xml">
+<link rel="canonical" href="http://jaquerespeis.org/posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="JáquerEspeis">
+<link rel="prev" href="../postsprogramar20microcontrolador20stm322/" title="Como programar un microcontrolador stm32 con cpp" type="text/html">
+<link rel="next" href="../autotools-basico/" title="Autotools básico" type="text/html">
+<meta property="og:site_name" content="JáquerEspeis">
+<meta property="og:title" content="Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04">
+<meta property="og:url" content="http://jaquerespeis.org/posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/">
+<meta property="og:description" content="Esta guía documenta cómo instalar el controlador de la tarjeta de Firma Digital de Costa Rica y la jerarquía de certificados del Banco Central (SINPE) y del MICITT en el sistema operativo Ubuntu 16.04">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-07-08T20:07:05-06:00">
+<meta property="article:tag" content="Firma digital">
+<meta property="article:tag" content="Software libre">
+<link rel="alternate" hreflang="en" href="../../en/posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://jaquerespeis.org/">
+
+                <span id="blog-title">JáquerEspeis</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../stories/calendario">Calendario</a>
+                </li>
+<li>
+<a href="../../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../../categories/">Categorías</a>
+                </li>
+<li>
+<a href="../../rss.xml">Canal RSS</a>
+
+                
+            </li>
+</ul>
+<!-- DuckDuckGo custom search --><form method="get" id="search" action="https://duckduckgo.com/" class="navbar-form pull-left">
+<input type="hidden" name="sites" value="http://jaquerespeis.org/"><input type="hidden" name="k8" value="#444444"><input type="hidden" name="k9" value="#D51920"><input type="hidden" name="kt" value="h"><input type="text" name="q" maxlength="255" placeholder="Search…" class="span2" style="margin-top: 4px;"><input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+</form>
+<!-- End of custom search -->
+
+
+            <ul class="nav navbar-nav navbar-right">
+<li>
+            </li>
+<li><a href="http://jaquerespeis.org/en/" rel="alternate" hreflang="en">English</a></li>
+
+                
+                    
+    <li>
+    <a href="index.src.html" id="sourcelink">Código fuente</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2016-07-08T20:07:05-06:00" itemprop="datePublished" title="2016-07-08 20:07">2016-07-08 20:07</time></a></p>
+            
+        <p class="sourceline"><a href="index.src.html" class="sourcelink">Código fuente</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>Esta guía documenta cómo instalar el controlador de la tarjeta de Firma Digital de Costa Rica y la jerarquía de certificados del Banco Central (SINPE) y del MICITT en el sistema operativo Ubuntu 16.04 de arquitectura Intel de 64 bits (x86_64).</p>
+<p>El motivo de esta nueva guía de instalación tenía los siguientes propósitos:</p>
+<ul>
+<li>Configurar de la forma más sencilla y adecuada el sistema para que funcione con la mayor cantidad de programas.</li>
+<li>Lograr que funcione para todos los usuarios del sistema, incluyendo los nuevos usuarios creados tras las instalación.</li>
+<li>Superar la prueba de firma digital (con applet Java) en el sitio web de Soporte Firma Digital con el navegador Mozilla Firefox (solamente funciona hasta la versión 52 ESR).</li>
+</ul>
+<h2>Instalación de las dependencias</h2>
+<ul>
+<li>Instalar el soporte CCID de PC/SC para que reconozca el lector de tarjetas y el plugin NPAPI IcedTea-Web para poder cargar el applet Java que permite firmar desde el navegador Firefox:</li>
+</ul>
+<pre>sudo apt -y install pcscd icedtea-plugin
+</pre>
+<h2>Descarga del “instalador”</h2>
+<ul>
+<li>Descargar el “instalador” en el desplegable llamado “Usuarios Linux” en la página de descarga de instaladores del sitio web de <a href="https://www.soportefirmadigital.com/">Soporte Firma Digital de Costa Rica</a>, introduciendo el número de serie de la tarjeta y el captcha.</li>
+</ul>
+<ul>
+<li>Descomprimir el archivo zip descargado con <kbd>unzip</kbd>, en el momento de escribir esta documentación se llama <kbd>sfd_ClientesLinux_Rev09.zip</kbd>. Se creará una carpeta llamada <kbd>Firma Digital</kbd>. Se asume que el archivo zip se ha descargado en la carpeta <kbd>Descargas</kbd>:</li>
+</ul>
+<pre>
+cd ~/Descargas
+
+unzip sfd_ClientesLinux_Rev09.zip
+</pre>
+<h2>Instalación de los certificados</h2>
+<p>Es necesario agregar a la lista de confianza la jerarquía de certificados del SINPE y del MICITT. Para ello, un conjunto de comandos:</p>
+<ul>
+<li>Copiar los certificados:</li>
+</ul>
+<pre>sudo cp Descargas/Firma\ Digital/Certificados/* /usr/local/share/ca-certificates/
+
+sudo rename.ul .cer .crt /usr/local/share/ca-certificates/*.cer
+
+for file in /usr/local/share/ca-certificates/*.crt; do sudo openssl x509 -inform DER -in "$file" -out "$file"; done 2&gt;/dev/null
+</pre>
+<ul>
+<li>Regenerar los archivos de certificados para todas las aplicaciones:</li>
+</ul>
+<pre>sudo update-ca-certificates --fresh
+</pre>
+<h2>Instalación del módulo PKCS#11</h2>
+<p>Aunque hay un módulo en el directorio <kbd>Librerías</kbd>, no es la versión más reciente y tiene varios defectos de enlazado. La versión distribuida en el paquete PinTool es más reciente y funciona correctamente en todos los programas probados. En el siguiente proceso se extrae y se instala conservando la fecha original de la librería y con los permisos correctos de usuario.</p>
+<ul>
+<li>Instalar el módulo PKCS#11 propietario en <kbd>/usr/lib/pkcs11</kbd>:</li>
+</ul>
+<pre>
+cd ~/Descargas/Firma\ Digital/PinTool/IDProtect\ PINTool\ 6.41.01/DEB
+
+ar p idprotectclient_641.01-0_amd64.deb data.tar.gz | tar zx ./usr/lib/x64-athena/libASEP11.so
+
+sudo mv usr/lib/x64-athena/libASEP11.so /usr/lib/x86_64-linux-gnu/pkcs11/
+
+sudo chown root:root /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so
+</pre>
+<ul>
+<li>Crear los siguientes enlaces simbólicos (necesarios para que funcionen algunos programas y applets):</li>
+</ul>
+<pre>sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/x86_64-linux-gnu/
+
+sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/
+
+sudo mkdir -p /usr/lib/x64-athena/
+
+sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/x64-athena/
+</pre>
+<ul>
+<li>Si se va a trabajar con el applet de la CCSS se puede realizar el siguiente paso opcional:</li>
+</ul>
+<pre>
+# mkdir -p /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/local/share/ca-certificates/ /Firma_Digital/CERTIFICADOS
+</pre>
+<ul>
+<li>Crear el fichero /etc/Athena/IDPClientDB.xml y abrirlo para edición:</li>
+</ul>
+<pre>sudo mkdir /etc/Athena/
+
+sudo gedit /etc/Athena/IDPClientDB.xml
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;IDProtect&gt;
+ &lt;TokenLibs&gt;
+  &lt;IDProtect&gt;
+   &lt;Cards&gt;
+    &lt;IDProtectXF&gt;
+     &lt;ATR type='hexBinary'&gt;3BDC00FF8091FE1FC38073C821106600000000000000&lt;/ATR&gt;
+     &lt;ATRMask type='hexBinary'&gt;FFFF00FFF0FFFFFFFFFFFFFFFFF0FF00000000000000&lt;/ATRMask&gt;
+    &lt;/IDProtectXF&gt;
+   &lt;/Cards&gt;
+  &lt;/IDProtect&gt;
+ &lt;/TokenLibs&gt;
+&lt;/IDProtect&gt;
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/etc/pkcs11/modules/firmadigital.module</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>sudo mkdir -p /etc/pkcs11/modules/
+
+sudo gedit /etc/pkcs11/modules/firmadigital.module
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>module: libASEP11.so
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/usr/local/sbin/update-p11-kit-symlinks</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>sudo gedit /usr/local/sbin/update-p11-kit-symlinks
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>#!/bin/sh
+
+FIREFOX_LIB=/usr/lib/firefox/libnssckbi.so
+THUNDERBIRD_LIB=/usr/lib/thunderbird/libnssckbi.so
+
+if ! [ -L "$FIREFOX_LIB" ]
+then
+    echo "Firefox libnssckbi.so is not a symlink. Fixing..."
+    mv -f "$FIREFOX_LIB" "$FIREFOX_LIB".bak
+    ln -s /usr/lib/x86_64-linux-gnu/p11-kit-proxy.so "$FIREFOX_LIB"
+fi
+
+if ! [ -L "$THUNDERBIRD_LIB" ]
+then
+    echo "Thunderbird libnssckbi.so is not a symlink. Fixing..."
+    mv -f "$THUNDERBIRD_LIB" "$THUNDERBIRD_LIB".bak
+    ln -s /usr/lib/x86_64-linux-gnu/p11-kit-proxy.so "$THUNDERBIRD_LIB"
+fi
+</pre>
+<ul>
+<li>Agregar el atributo de ejecutable al script:</li>
+</ul>
+<pre>sudo chmod +x /usr/local/sbin/update-p11-kit-symlinks
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/etc/systemd/system/p11-kit-proxy-updater.service</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>sudo gedit /etc/systemd/system/p11-kit-proxy-updater.service 
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>[Unit]
+Description=mantenimiento de enlaces a p11-kit-proxy
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/update-p11-kit-symlinks
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+<p>Activar el servicio al arranque y ejecutarlo una primera vez para comprobar que funciona:</p>
+<pre>sudo systemctl enable p11-kit-proxy-updater.service
+
+sudo systemctl start p11-kit-proxy-updater.service
+</pre>
+<p>Eso es todo. Es necesario reiniciar Firefox, Thunderbird y cualquier otra aplicación que use certificados para que se apliquen los cambios. Si se ha insertado el lector y la tarjeta al lector, estas aplicaciones preguntarán por el PIN, lo que indicará que se la instalación ha sido exitosa.</p>
+<p>En Firefox (hasta la versión 51 y la 52 ESR) ya se puede ir a realizar la prueba en el enlace “Verificación de Capacidad de Firma” del sitio web de Soporte Firma Digital de Costa Rica mencionado anteriormente y debería pasarla con éxito. En el navegador aparecerá que se quiere ejecutar “IcedTea-Web”, hay que permitirlo. Si el navegador hace preguntas sobre el applet responder afirmativamente y aceptar a todos los cuadros de mensaje que aparezcan e ingresar el PIN cuando lo solicite.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/firma-digital/" rel="tag">Firma digital</a></li>
+            <li><a class="tag p-category" href="../../categories/software-libre/" rel="tag">Software libre</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../postsprogramar20microcontrolador20stm322/" rel="prev" title="Como programar un microcontrolador stm32 con cpp">Publicación anterior</a>
+            </li>
+            <li class="next">
+                <a href="../autotools-basico/" rel="next" title="Autotools básico">Siguiente publicación</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>Publicado bajo una licencia <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.
+ - Creado con <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script src="../../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(1, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

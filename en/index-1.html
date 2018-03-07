@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JáquerEspeis (old posts, page 1) | JáquerEspeis</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../rss.xml">
+<link rel="canonical" href="http://jaquerespeis.org/en/index-1.html">
+<link rel="prev" href="index-2.html" type="text/html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://jaquerespeis.org/en/">
+
+                <span id="blog-title">JáquerEspeis</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="archive.html">Archive</a>
+                </li>
+<li>
+<a href="categories/">Categories</a>
+                </li>
+<li>
+<a href="rss.xml">RSS</a>
+
+                
+            </li>
+</ul>
+<!-- DuckDuckGo custom search --><form method="get" id="search" action="https://duckduckgo.com/" class="navbar-form pull-left">
+<input type="hidden" name="sites" value="http://jaquerespeis.org/"><input type="hidden" name="k8" value="#444444"><input type="hidden" name="k9" value="#D51920"><input type="hidden" name="kt" value="h"><input type="text" name="q" maxlength="255" placeholder="Search…" class="span2" style="margin-top: 4px;"><input type="submit" value="DuckDuckGo Search" style="visibility: hidden;">
+</form>
+<!-- End of custom search -->
+
+
+            <ul class="nav navbar-nav navbar-right">
+<li>
+            </li>
+<li><a href="http://jaquerespeis.org/" rel="alternate" hreflang="es">Español</a></li>
+
+                
+                    
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/esblogubuntu-testing-day-wrap-up-20170203/" class="u-url">Ubuntu Testing Day wrap up - Ubuntu Core and QEMU (20170203)</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/esblogubuntu-testing-day-wrap-up-20170203/" rel="bookmark"><time class="published dt-published" datetime="2017-02-09T05:02:13-06:00" title="2017-02-09 05:02">2017-02-09 05:02</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>After a little break, on the first Friday of February we resumed the Ubuntu
+Testing Days.</p>
+<p>This session was pretty interesting, because after setting some of the bases
+last year we are now ready to dig deep into the most important projects that
+will define the future of Ubuntu.</p>
+<p>We talked about Ubuntu Core, a snap package that is the base of the operating
+system. Because it is a snap, it gets the same benefits as all the other snaps:
+automatic updates, rollbacks in case of error during installation, read-only
+mount of the code, isolation from other snaps, multiple channels on the store
+for different levels of stability, etc.</p>
+<p>The features, philosophy and future of Core were presented by
+<a href="https://mvogt.wordpress.com/">Michael Vogt</a> and
+<a href="https://twitter.com/zygoon">Zygmunt Krynicki</a>, and then
+<a href="https://twitter.com/frgnieto">Federico Giménez</a> did a great demo of how to
+create an image and test it in QEMU.</p>
+<p>Click the image below to watch the full session.</p>
+<p><a href="https://www.youtube.com/watch?v=nBfAmCZMXQ8"><img alt="Alt text" src="https://img.youtube.com/vi/nBfAmCZMXQ8/0.jpg"></a></p>
+<p>There are plenty of resources in the Ubuntu websites related to Ubuntu Core.</p>
+<p>To get started, we recommend to follow this guide to
+<a href="https://developer.ubuntu.com/core/get-started/kvm">run the operating system in a virtual machine</a>.</p>
+<p>After that, and if you are feeling brave and want to help Michael, Zygmund and
+Federico, you can download the candidate image instead, from
+<a href="http://cdimage.ubuntu.com/ubuntu-core/16/candidate/pending/ubuntu-core-16-amd64.img.xz">http://cdimage.ubuntu.com/ubuntu-core/16/candidate/pending/ubuntu-core-16-amd64.img.xz</a>
+This is the image that's being currently tested, so if you find something wrong
+or weird, please
+<a href="https://bugs.launchpad.net/snapd/+filebug">report a bug in Launchpad</a>.</p>
+<p>Finally, if you want to learn more about the snaps that compose the image and
+take a peek at the things that we'll cover in the following testing days, you
+can follow the
+<a href="https://tutorials.ubuntu.com/tutorial/create-your-own-core-image#0">tutorial to create your own Core image</a>.</p>
+<p>On this session we were also accompanied by
+<a href="https://twitter.com/sdrobertw">Robert Wolff</a> who works on 96boards at Linaro.
+He has an awesome show every Thursday called
+<a href="https://www.96boards.org/openhours/">Open Hours</a>. At 96boards they are
+building open Linux boards for prototyping and embedded computing. Anybody can
+jump into the Open Hours to learn more about this cool work.</p>
+<p>The great news that Robert brought is that both Open Hours and Ubuntu Testing
+Days will be focused on Ubuntu Core this month. He will be our guest again next
+Friday, February 10th, where he will be talking about the
+<a href="http://www.96boards.org/product/dragonboard410c/">DragonBoard 410c</a>. Also my
+good friend <a href="https://plus.google.com/+OliverGrawert">Oliver Grawert</a> will be
+with us, and he will talk about the work he has been doing to enable Ubuntu in
+this board.</p>
+<p>Great topics ahead, and a full new world of possiblities now that we are
+mixing free software with open hardware and affordable prototyping tools.
+Remember, every Friday in <a href="http://ubuntuonair.com/">http://ubuntuonair.com/</a>,
+no se lo pierda.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/instaladores-de-firma-digital-de-costa-rica-para-gnu-linux/" class="u-url">Instaladores de Firma Digital de Costa Rica para GNU/Linux</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/instaladores-de-firma-digital-de-costa-rica-para-gnu-linux/" rel="bookmark"><time class="published dt-published" datetime="2016-12-24T23:12:45-06:00" title="2016-12-24 23:12">2016-12-24 23:12</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>Este proyecto de instaladores se ha creado en conjunto con <a href="https://solvosoft.com/" target="_blank">Luis Zárate</a> para facilitar la instalación de las herramientas necesarias de Firma Digital de Costa Rica en distribuciones GNU/Linux. Se trata de un desarrollo no oficial, creado voluntariamente para mejorar el soporte en diversas distribuciones este sistema operativo, inicialmente para Debian y Ubuntu y próximamente para Fedora, CentOS, openSUSE y Arch.</p>
+<p>El mecanismo para instalar los instaladores se realiza mediante un repositorio. Esto permite facilitar la instalación de los paquetes y poder recibir actualizaciones de los mismos de la misma manera que el resto de software del sistema.</p>
+<p>Los instaladores configuran el sistema para agregar confianza a los certificados de la jerarquía nacional en los diferentes programas que hacen uso de almacenes de certificados (NSS de Mozilla, OpenSSL, GnuTLS y Java), así como el controlador del lector de tarjetas y también el módulo para poder manejar la tarjeta de Firma Digital.</p>
+<p>Basados en parte en las guías previas con diversas mejoras, se ha verificado que tras la instalación del paquete se pueden utilizar servicios de Firma Digital y se listan las autoridades de certificados de la jerarquía nacional en software como Mozilla Firefox, Mozilla Thunderbird, Chromium/Chrome, Evolution, Seahorse (contraseñas y claves) y aplicaciones Java.</p>
+<p>Las instrucciones de instalación están disponibles en el sitio web <a href="http://repos.solvosoft.com/" target="_blank">repos.solvosoft.com</a>.</p>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/soluciones-modernas-para-usar-firma-digital-desde-la-web/" class="u-url">Soluciones modernas para usar firma digital desde la web</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/soluciones-modernas-para-usar-firma-digital-desde-la-web/" rel="bookmark"><time class="published dt-published" datetime="2016-11-09T18:11:09-06:00" title="2016-11-09 18:11">2016-11-09 18:11</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>En el mundo de los estándares web no ha habido ni hay (por ahora) un mecanismo que permita acceder a dispositivos de seguridad para poder firmar digitalmente. Mientras avanzan los <a href="https://w3c.github.io/webcrypto/KeyDiscovery.html">esfuerzos</a> en este sentido y con cierto retraso, en estos años han existido diversas formas no estándar para poder firmar, siendo todas ellas soluciones propietarias de cada navegador o bien utilizando tecnologías de complementos. Una de las más extendidas por su portabilidad era un firmador en Java utilizando applets, pero esta tecnología se está eliminando de los navegadores modernos y también siendo eliminada en futuras versiones de Java.</p>
+<p>En la actualidad hay navegadores modernos como Edge que no disponen de ninguna forma de agregar complementos que permitan ejecutar código privilegiado y hasta la fecha <a href="https://wpdev.uservoice.com/forums/257854-microsoft-edge-developer/suggestions/13612338-native-messaging">no hay planes todavía</a> para ello. Estos cambios fuerzan a utilizar formas más ingeniosas para resolver este problema de falta de interacción de sistemas de firma digital con los nuevos navegadores.</p>
+<p>Afortunadamente existe una posible solución para comunicar sitios web con el hardware sin necesidad de complementos especiales en el navegador. La empresa que desarrolla y mantiene el proyecto DSS utiliza una técnica sencilla pero eficaz, mediante una aplicación de escritorio que ejecuta un servicio escuchando en un puerto en particular que tiene privilegios para acceder a los dispositivos de firma digital, los sitios web pueden comunicarse con este servicio local y enviarle la información que debe ser firmada y el resto del proceso se realiza en el lado de la web. Una de las aplicaciones existentes que utilizan esta técnica es software libre y se llama NexU, el cual se ha integrado en DSS a partir de la reciente versión 4.7.0, la cual ha decidido utlilizarla como reemplazo a los obsolescentes applets y JNLP.</p>
+<h2>Demostración de firma sin complementos de navegador</h2>
+<p>En el momento de escribir esto, he encontrado en línea una <a href="http://dss.agid.gov.it/nexu">instalación de la WebApp de DSS 4.7</a> para poder probar NexU, que una vez descargado hay que ejecutar el jar que contiene el zip y recargar la página de la webapp, que detectará que se está ejecutando y el botón de formulario <code>Install NexU</code> cambiará a <code>Submit</code>. Para ejecutar el jar en GNU/Linux hay que tener instalado OpenJFX, que se explica en una entrada de blog previa. Para probarlo se puede desde una terminal mediante <code>java -jar nexu.jar</code> y manteniendo la terminal abierta. Para verificar que el servicio está ejecutándose correctamente se puede ingresar en el navegador en el sitio <code>http://localhost:9776/nexu-info</code>, donde debería aparecer un pequeño objeto JSON con la versión de la aplicación.</p>
+<h3>El problema del contenido mixto</h3>
+<p>El sitio web enlazado podría funcionar con HTTPS y el servicio local con HTTP, por lo que los navegadores modernos suelen bloquear esta comunicación. En Chromium aparece el icono de un escudo en la parte derecha de la barra de direcciones, donde haciendo clic se puede permitir la carga insegura y en Firefox aparece un candado verde con un triángulo gris con una exclamación, donde haciendo clic y a continuación en la parte derecha donde aparece un símbolo “&gt;” se puede deshabilitar la carga insegura y finalmente el sitio web podrá acceder al servicio local.</p>
+<p>A partir de las versiones 1.6.x de NexU se soporta HTTPS, una solución a este problema sería modificar la WebApp de DSS para que conecte a local por HTTPS y que exista un certificado para un host local, confiado e instalado en la máquina para que permita el acceso seguro a localhost y evitar el inconveniente del contenido mixto. La versión de NexU que sugiere DSS de momento es la 1.3, que no soporta HTTPS, por lo que debe descargarse la 1.6.2 o la 1.7 aparte y hacer los ajustes necesarios a DSS. En cualquier caso si bien la confianza SSL a localhost <a href="https://cabforum.org/pipermail/public/2015-June/005673.html">no se puede realizar con autoridades de certificación públicas</a>, disponer de un nombre de host apuntando a 127.0.0.1 con una CA autofirmada, creada en la propia máquina, instalada y confiada y con ella firmando un certificado (para luego desechar la clave privada de la CA por seguridad) evita este problema. Otra opción sería usar un servidor seguro intermedio que se comunique con la aplicación de escritorio y el sitio web por backend, aunque esta opción también es relativamente compleja y requiere configuración a una dirección específica que haga conexión permanente desde la aplicación que accede a la tarjeta y mantener la comunicación abierta mientras esté el firmador en ejecución, pero esta solución requiere infraestructura adicional y la misma herramienta se alejaría de ser multipropósito sin previa actualización de la configuración.</p>
+<h2>Escenario ideal</h2>
+<p>Si bien esta solución es relativamente nueva y requiere algunos ajustes de configuración y previamente instalar la herramienta de acceso a la tarjeta, se perfila como una solución viable para poder realizar firma digital en la web de manera interoperable y multiplataforma. La posibilidad de que existieran actualizaciones a los instaladores de Firma Digital actuales del país contemplando la preinstalación de una herramienta de este estilo abriría la posibilidad de poder integrar esta solución en sistemas Windows, GNU/Linux y macOS y de que las instituciones adoptaran este mecanismo para solucionar el problema con los navegadores modernos.</p>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/como-firmar-documentos-pdf-con-firma-digital-de-costa-rica-con-software-libre/" class="u-url">Cómo firmar documentos PDF con firma digital de Costa Rica con software libre</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/como-firmar-documentos-pdf-con-firma-digital-de-costa-rica-con-software-libre/" rel="bookmark"><time class="published dt-published" datetime="2016-11-07T21:11:42-06:00" title="2016-11-07 21:11">2016-11-07 21:11</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>La <a href="http://www.mifirmadigital.go.cr/wp-content/uploads/2016/03/DCFD-Poli%CC%81tica-de-Formato-Oficial-v1.0.pdf">Política de Formatos Oficiales de los Documentos Electrónicos Firmados Digitalmente</a> de Costa Rica especifica el tipo de documentos y su formato de firma digital. En el caso de PDF se utiliza un estándar especificado en Europa para firma digital avanzada (AdES) y en el caso de los PDF se llama PAdES. En el documento oficial enlazado previamente se muestra que tiene que soportar PAdES-LTV (permite la validación de forma longeva) y sugiere que se use el perfil Baseline. El asunto es que no hay mucho software libre en el mercado que permita la firma digital avanzada en PDF, sin embargo la propia Comisión Europea tiene un proyecto para ello (Digital Signature Services), que es un conjunto de librerías y herramientas en Java que permiten trabajar con firma digital con los estándares europeos, incluyendo soporte para PDF.</p>
+<p>Hasta no hace mucho tiempo, una de las pocas implementaciones libres para trabajar con firma digital avanzada en PDF era iText, sin embargo este proyecto cambió de licencia y las condiciones de uso contradecían la propia licencia, además de presuntas incompatibilidades en contribuciones del código por parte de terceros que la hacían incompatible con la nueva licencia. Afortunadamente, el proyecto DSS (usando Apache PDFBox como alternativa a iText) permite firmar documentos PDF cumpliendo con la política de formatos oficiales nacional.</p>
+<h2>Instalación en GNU/Linux</h2>
+<p>Existe un firmador en formato independiente que funciona en el escritorio. Se puede descargar <a href="https://joinup.ec.europa.eu/dss-webapp/downloads/dss-app.zip">DSS standalone app package 5.1</a> (este es el más reciente en el momento de escribir esta entrada de blog).</p>
+<p>Una vez descargado, descomprimir el archivo, contendrá dss-app.jar y un par de scripts para lanzar el jar de forma sencilla. El firmador que hay dentro del jar utiliza por defecto un servidor TSA europeo, para cambiarlo habrá que modificar un fichero que hay dentro del jar en la ruta spring/applicationContext.xml y buscar el texto: <code>http://tsa.belgium.be/connect</code> para reemplazarlo por el siguiente: <code>http://tsa.sinpe.fi.cr/tsahttp/</code> y guardarlo modificado con este cambio dentro del archivo jar (un archivo jar es un archivo zip realmente).</p>
+<p>Para poder ejecutar este jar en GNU/Linux se necesita el JRE de OpenJDK 8 y además OpenJFX 8 (JavaFX). En Fedora <code>sudo dnf -y install java-1.8.0-openjdk-openjfx</code> y en Ubuntu se puede instalar con <code>sudo apt -y install openjfx</code>.</p>
+<p>Una vez instaladas las dependencias de Java, se puede ejecutar desde la terminal en la carpeta donde se haya descomprimido con <code>sh dss-run.sh</code> o bien con <code>java -jar dss-app.jar</code>.</p>
+<p>Aparecerá una ventana como la siguiente:<br><img class="alignnone size-medium wp-image-63" src="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-14-57-51.png" alt="Firmador DSS configurado" srcset="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-14-57-51.png 650w, https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-14-57-51-300x179.png 300w" sizes="(max-width: 650px) 100vw, 650px"></p>
+<h2>Firmado de un documento PDF</h2>
+<p>En fichero a firmar (<code>File to sign</code>) se selecciona el documento PDF que se desea firmar digitalmente.</p>
+<p>En formato de firma (<code>Signature format</code>) se debe elegir PAdES porque se trata de un PDF.</p>
+<p>En PAdES solamente existe el formato envuelto (<code>Enveloped</code>), por lo que este campo lo selecciona automáticamente.</p>
+<p>En el nivel (<code>Level</code>) se elige el nivel de perfil de PAdES. PAdES-BASELINE-LTA es el equivalente a PAdES-LTV.</p>
+<p>En algoritmo de resumen hash encriptado (<code>Digest algorithm</code>) se recomienda que sea como mínimo de tipo SHA-2, en la imagen de ejemplo se ha seleccionado SHA-512.</p>
+<p>En <code>Signature token API</code> se tiene que seleccionar <code>PKCS #11</code>, entonces se desplegará <code>PKCS #11 library</code> donde hay que especificar dónde está la librería del módulo de Firma Digital (libASEP11.so).</p>
+<p>En contraseña (<code>Password</code>) se ingresa el PIN de la tarjeta de Firma Digital.</p>
+<p>Cuando se presione sobre <code>Sign</code> se iniciará el proceso de firmado y tras unos segundos aparecerá una ventana para guardar el PDF generado en la ubicación que se desee.</p>
+<p>Eso es todo. El documento PDF ya tiene una firma válida en el país.</p>
+<h2>Demostración de documento válido generado</h2>
+<p>Esta imagen muestra que la firma generada es válida en la aplicación Acrobat Reader DC:</p>
+<p><img class="alignnone size-medium wp-image-64" src="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14.png" alt="Validando firma en Adobe Reader" srcset="https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14.png 1024w, https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14-300x190.png 300w, https://fran.cr/wp-content/uploads/2016/11/Captura-de-pantalla-de-2016-11-07-15-38-14-768x485.png 768w" sizes="(max-width: 1024px) 100vw, 1024px"></p>
+<p>Existen formas de validar la firma del documento PDF con software libre (para no tener que usar Acrobat Reader DC como en este ejemplo), pero se explicará en próximas entradas de blog.</p>
+<p>Aunque este firmador no tiene campo de estampa visible (“firma visible”), la política de documento oficial no indica que el documento requiera disponer este detalle visual en los PDF.</p>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/como-autenticarse-en-el-modulo-de-firma-digital-de-la-ccss-en-gnulinux/" class="u-url">Cómo autenticarse en el Módulo de Firma Digital de la CCSS en GNU/Linux</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/como-autenticarse-en-el-modulo-de-firma-digital-de-la-ccss-en-gnulinux/" rel="bookmark"><time class="published dt-published" datetime="2016-11-01T22:11:40-06:00" title="2016-11-01 22:11">2016-11-01 22:11</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>El <a href="https://aissfa.ccss.sa.cr/ModuloFirmaDigital/">Módulo de Firma Digital</a> de la Caja Costarricense de Seguro Social en la actualidad utiliza la tecnología Java mediante el (obsolescente) sistema de plug-ins NPAPI de navegador para autenticarse en el sitio y poder así acceder a diversos servicios en línea.</p>
+<p>Este sitio tiene unos requerimientos particulares para los usuarios de sistemas operativos GNU/Linux que no resultan obvios sino más bien confusos. Si se ha instalado el sistema de Firma Digital de Costa Rica, esta página sigue sin funcionar y muestra un error con el mensaje:</p>
+<blockquote><p>Se ha generado un error en el certificado. Por favor verifique que la libreria PKCS11 se encuentra en la ruta: /usr/local/lib/libASEP11.so</p></blockquote>
+<p>Este mensaje no significa lo que aparenta: copiar la librería en esa ruta no servirá de nada, de hecho el applet no la lee de ahí, probablemente sea un mensaje que se usaba para código en desuso actualmente. Este mensaje de error realmente aparece porque no encuentra los certificados de la jerarquía de las autoridades certificadoras en una ruta del sistema específica.</p>
+<p>Para solucionar este problema hay que crear los siguientes directorios en la raíz del sistema de ficheros:</p>
+<pre>sudo mkdir -p /Firma_Digital/CERTIFICADOS/</pre>
+<p>El applet java de la CCSS no lee datos del certstore (JKS) de Java, y en su lugar los lee de esa ruta específica en el caso de GNU/Linux y macOS, así que los certificados de la jerarquía CA hay que copiarlos allí solo para el uso de este applet en particular.</p>
+<p>Asumiendo que se ha descargado el fichero instalador de la web de soportefirmadigital y se ha descomprimido el zip en la carpeta Descargas de nuestro usuario, para copiarlos allí sería:</p>
+<pre>sudo cp ~/Descargas/Firma\ Digital/Certificados/* /Firma_Digital/CERTIFICADOS/</pre>
+<p>Con este paso el applet ya no mostraría este error pero todavía no encontraría la librería. Hay que crear otra carpeta donde ubicar la librería:</p>
+<pre>sudo mkdir /Firma_Digital/LIBRERIAS/</pre>
+<p>Y la copiamos ahí o creamos un enlace simbólico desde otra que tengamos en otro lugar del sistema de ficheros. En este ejemplo se copiará de la que se descomprimió del zip de soportefirmadigital:</p>
+<pre>sudo cp ~/Descargas/Firma\ Digital/Librería/x64/libASEP11.so /Firma_Digital/LIBRERIAS/</pre>
+<p>Si se usa un GNU/Linux de 32 bit hay que cambiar el x64 anterior por x86 en la línea anterior.</p>
+<p>Eso es todo. Ahora el applet de la página debería preguntar por el PIN y permitir seleccionar el certificado del usuario para poder autenticarse.</p>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/autotools-basico/" class="u-url">Autotools básico</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/autotools-basico/" rel="bookmark"><time class="published dt-published" datetime="2016-07-23T17:07:17-06:00" title="2016-07-23 17:07">2016-07-23 17:07</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <h1>Propósito</h1>
+<p>Crear paquetes de código fuente utilizando las herramientas de construcción de GNU (Autoconf, Automake y Libtool) a partir de uno o más ficheros de código fuente y los ficheros <kbd>configure.ac</kbd> y <kbd>Makefile.am</kbd>.</p>
+<p>Esta guía muestra cómo a partir de un fichero fuente <kbd>holamundo.c</kbd> y el par de ficheros mencionados anteriormente se generará un archivo llamado <kbd>holamundo-1.0.0.tar.gz</kbd> que una vez desempaquetado se pueda compilar e instalar con el típico “<kbd>./configure &amp;&amp; make &amp;&amp; sudo make install</kbd>“.</p>
+<p>En una próxima entrada se explicará cómo trabajar con dependencias (librerías).</p>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#ventajas"></a>Ventajas</h2>
+<ul>
+<li>Portabilidad, permite generar makefiles compatibles con diferentes implementaciones de Make, múltiples compiladores e intérpretes y generar scripts compatibles con múltiples shell.</li>
+<li>Multiplataforma, los scripts generados facilitan las comprobaciones y configuraciones necesarias para generar una compilación cruzada, por ejemplo generar binarios para otra arquitectura agregando pocos parámetros.</li>
+</ul>
+<h1>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#herramientas"></a>Herramientas</h1>
+<ul>
+<li>
+<kbd>autoconf</kbd>, se encarga de generar el script <kbd>configure</kbd> a partir del fichero <kbd>configure.ac</kbd>.</li>
+<li>
+<kbd>automake</kbd>, genera el fichero <kbd>Makefile.in</kbd> a partir del fichero <kbd>Makefile.am</kbd>.</li>
+<li>
+<kbd>libtool</kbd>, gestiona la creación de librerías estáticas y dinámicas, y también la <em>carga</em> (en tiempo de ejecución) de librerías dinámicas.</li>
+</ul>
+<p>Dentro del paquete <kbd>autoconf</kbd> hay otras herramientas relevantes como <kbd>aclocal</kbd> y <kbd>autoheader</kbd>. En este ejemplo básico se ejecutan de forma automática todas las herramientas mencionadas utilizando la herramienta <kbd>autoreconf</kbd>.</p>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#herramientas-relacionadas"></a>Herramientas relacionadas</h2>
+<ul>
+<li>
+<kbd>make</kbd>, procesa archivos <kbd>Makefile</kbd>. Existen varias implementaciones (GNU Make, BSD Make…) con algunas incompatibilidades que autotools solventa.</li>
+<li>
+<kbd>pkg-config</kbd>, facilita información sobre la mayoría de las librerías instaladas en el sistema (ubicación, dependencias, versión, etc.).</li>
+</ul>
+<h1>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#hola-autotools"></a>¡Hola, Autotools!</h1>
+<p>Para crear el ejemplo básico de paquete es conveniente disponer de una carpeta de trabajo para tenerlo mejor organizado.</p>
+<ul>
+<li>Crear una carpeta <kbd>holamundo</kbd> con una subcarpeta <kbd>src</kbd> para el código fuente y a continuación ubicarse en la carpeta de trabajo:</li>
+</ul>
+<div>
+<pre>mkdir -p holamundo/src
+cd holamundo</pre>
+</div>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#srcholamundoc"></a>src/holamundo.c</h2>
+<ul>
+<li>Crear un fichero de código fuente C en <kbd>src/holamundo.c</kbd>:</li>
+</ul>
+<div>
+<pre>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hola Mundo!\n");
+
+    return 0;
+}</pre>
+</div>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#makefileam"></a>Makefile.am</h2>
+<ul>
+<li>Crear un fichero <kbd>Makefile.am</kbd>:</li>
+</ul>
+<div class="highlight highlight-source-makefile">
+<pre>bin_PROGRAMS = holamundo
+holamundo_SOURCES = src/holamundo.c</pre>
+</div>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#configureac"></a>configure.ac</h2>
+<ul>
+<li>Ejecutar la herramienta <kbd>autoscan</kbd> en la carpeta de trabajo. Creará un fichero llamado <kbd>configure.scan</kbd> que hay que renombrar a <kbd>configure.ac</kbd>:</li>
+</ul>
+<div>
+<pre>autoscan
+mv configure.scan configure.ac</pre>
+</div>
+<p>Nos habrá generado un fichero <kbd>configure.ac</kbd> parecido al siguiente:</p>
+<div>
+<pre>#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([src/holamundo.c])
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+
+# Checks for header files.
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT</pre>
+</div>
+<ul>
+<li>Modificar la macro <kbd>AC_INIT</kbd> del fichero <kbd>configure.ac</kbd> para mostrar el nombre del paquete, versión y dirección para avisar sobre errores (correo electrónico o web):</li>
+</ul>
+<pre>AC_INIT([holamundo], [1.0.0], [****@fran.cr])
+</pre>
+<ul>
+<li>Agregar la macro <kbd>AM_INIT_AUTOMAKE</kbd> en el fichero <kbd>configure.ac</kbd> para poder generar los Makefiles. Un buen lugar sería después de la línea de <kbd>AC_CONFIG_HEADERS</kbd>:</li>
+</ul>
+<pre>AM_INIT_AUTOMAKE([foreign subdir-objects])
+</pre>
+<p>Una vez modificado el fichero <kbd>configure.ac</kbd> debería ser parecido al siguiente:</p>
+<div>
+<pre>#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([holamundo], [1.0.0], [****@fran.cr])
+AC_CONFIG_SRCDIR([src/holamundo.c])
+AC_CONFIG_HEADERS([config.h])
+AM_INIT_AUTOMAKE([foreign subdir-objects])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+
+# Checks for header files.
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT</pre>
+</div>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#generar-configure-y-makefilein"></a>Generar configure y Makefile.in</h2>
+<ul>
+<li>Ejecutar:</li>
+</ul>
+<div>
+<pre>autoreconf -i</pre>
+</div>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#generar-makefile"></a>Generar Makefile</h2>
+<div>
+<pre>./configure</pre>
+</div>
+<h2>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#generar-paquete-tarball"></a>Generar paquete (“tarball”)</h2>
+<div>
+<pre>make dist</pre>
+</div>
+<p>Se habrá generado <kbd>holamundo-1.0.0.tar.gz</kbd></p>
+<h1>
+<a href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#instalaci%C3%B3n-gen%C3%A9rica-del-paquete"></a>Instalación genérica del paquete</h1>
+<ul>
+<li>Descomprimir:</li>
+</ul>
+<div>
+<pre>tar xf holamundo-1.0.0.tar.gz</pre>
+</div>
+<ul>
+<li>Entrar en la carpeta comprimida:</li>
+</ul>
+<div>
+<pre>cd holamundo-1.0.0</pre>
+</div>
+<ul>
+<li>Generar Makefile:</li>
+</ul>
+<div>
+<pre>./configure</pre>
+</div>
+<ul>
+<li>Construir:</li>
+</ul>
+<div>
+<pre>make</pre>
+</div>
+<ul>
+<li>Instalar:</li>
+</ul>
+<div>
+<pre>sudo make install</pre>
+</div>
+<h1>
+<a id="user-content-detalles-de-los-ficheros-creados" href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#detalles-de-los-ficheros-creados"></a>Detalles de los ficheros creados</h1>
+<h2>
+<a id="user-content-makefileam-1" href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#makefileam-1"></a>Makefile.am</h2>
+<p><kbd>bin_PROGRAMS</kbd> indica la lista de programas (binarios en este caso) que va a crearse. En este caso se va a crear un binario llamado <kbd>holamundo</kbd>.</p>
+<p><kbd>holamundo_SOURCES</kbd> indica que nuestro <kbd>holamundo</kbd> tiene un listado de <kbd>_SOURCES</kbd> (ficheros fuente). En este ejemplo solamente hay uno (<kbd>src/holamundo.c</kbd>). Si el proyecto tuviera más ficheros de código fuente para crear el programa se separan con espacios. Si se desea poner un fichero por línea para hacer el mantenimiento de <kbd>Makefile.am</kbd> más limpio se puede utilizar <kbd>\</kbd> al final de la línea para indicar que continúa en la siguiente, por lo tanto:</p>
+<pre>holamundo_SOURCES = \
+    fichero1.c \
+    fichero2.c \
+    fichero3.c
+</pre>
+<p>es lo mismo que:</p>
+<pre>holamundo_SOURCES = fichero1.c fichero2.c fichero3.c
+</pre>
+<h2>
+<a id="user-content-configureac-1" href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#configureac-1"></a>configure.ac</h2>
+<p><kbd>foreign</kbd> indica que no se está creando un paquete GNU estándar (no exigirá la existencia de los ficheros <kbd>ChangeLog</kbd>, <kbd>COPYING</kbd>, <kbd>NEWS</kbd> y <kbd>README</kbd> para funcionar).</p>
+<p><kbd>subdir-objects</kbd> indica que se está usando el modo recursivo, es decir, no se van a usar múltiples ficheros Makefile.am para cada carpeta con objetivos a procesar.</p>
+<p><kbd>AC_PREREQ</kbd> indica la versión mínima de autoconf requerida para funcionar con el archivo de configuración.</p>
+<p><kbd>AC_CONFIG_SRCDIR</kbd> comprueba que el código fuente existe en la carpeta indicada mediante la comprobación de algún fichero fuente de la misma.</p>
+<p><kbd>AC_CONFIG_HEADERS</kbd> indica el nombre que tendrá el archivo de configuración de código fuente generado. Esto permite crear definiciones (por ejemplo, <kbd>#define LOQUESEA 1</kbd>) en el archivo indicado (por defecto, <kbd>config.h</kbd>) que podrá ser incluido en el código fuente. Estas definiciones podrían variar según lo que compruebe el script <kbd>configure</kbd>, resultando muy útil por ejemplo para verificar si el programa se ha compilado con o sin soporte de una característica en particular, por ejemplo para dependencias opcionales de librerías o comprobaciones de funcionalidad del compilador o de un sistema operativo en tiempo de compilación.</p>
+<p><kbd>AC_PROG_CC</kbd> comprueba la existencia de un compilador de C. Como autoscan ha detectado código fuente en C se ha agregado esta macro automáticamente.</p>
+<p><kbd>AC_CONFIG_FILES</kbd> recibe en el primer parámetro una lista de ficheros separados con espacios. (en este caso solo <kbd>Makefile</kbd>, que generará a partir de <kbd>Makefile.in</kbd>). Los ficheros con extensión .in se utilizan para sustituir los valores de las variables que contienen y generar el archivo de salida, normalmente con el mismo nombre sin el <kbd>.in</kbd>. Este proceso lo realiza la macro <kbd>AC_OUTPUT</kbd>.</p>
+<h2>
+<a id="user-content-algunos-parámetros-del-script-configure" href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#algunos-par%C3%A1metros-del-script-configure"></a>Algunos parámetros del script configure</h2>
+<p>El parámetro <kbd>--prefix</kbd> permite indicar el directorio base de instalación, que por defecto suele ser <kbd>/usr/local</kbd>. Por ejemplo el programa <kbd>holamundo</kbd> se copiaría por defecto a la carpeta <kbd>/usr/local/bin</kbd> si no se cambia el <kbd>--prefix</kbd>. Las distribuciones suelen usar en sus paquetes <kbd>--prefix=/usr</kbd>. Si se quiere instalar un paquete y no se tienen permisos de superusuario se podría indicar una ruta dentro de la $HOME donde usualmente se suelen tener permisos de escritura.</p>
+<p><kbd>./configure --help</kbd> muestra información detallada de los parámetros.</p>
+<h3>
+<a id="user-content-compilación-cruzada-con-el-script-configure" href="https://github.com/JaquerEspeis/webespeis/blob/master/posts/autotools-basico.md#compilaci%C3%B3n-cruzada-con-el-script-configure"></a>Compilación cruzada con el script configure</h3>
+<p>El parámetro <kbd>--host</kbd> permite utilizar de forma sencilla toolchains para compilación cruzada, por ejemplo en una máquina Intel con Ubuntu e instalando el paquete <kbd>gcc-arm-linux-gnueabihf</kbd> proporciona el toolchain para ARMv7 (hard float) y puede realizarse esto:</p>
+<div>
+<pre>./configure --host=arm-linux-gnueabihf
+make</pre>
+</div>
+<p>A continuación podemos verificar que el ejecutable <kbd>holamundo</kbd> es un ELF para arquitectura ARM y no para Intel mediante:</p>
+<div>
+<pre>file holamundo</pre>
+</div>
+<p>por lo que podremos comprobar que efectivamente se utilizaron las herramientas del toolchain sin tener que prefijar individualmente compilador, enlazador y demás ejecutables.</p>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/" class="u-url">Cómo instalar Firma Digital de Costa Rica en GNU/Linux Ubuntu 16.04</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/instalar-firma-digital-costa-rica-gnu-linux-ubuntu-16-04/" rel="bookmark"><time class="published dt-published" datetime="2016-07-08T20:07:05-06:00" title="2016-07-08 20:07">2016-07-08 20:07</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>Esta guía documenta cómo instalar el controlador de la tarjeta de Firma Digital de Costa Rica y la jerarquía de certificados del Banco Central (SINPE) y del MICITT en el sistema operativo Ubuntu 16.04 de arquitectura Intel de 64 bits (x86_64).</p>
+<p>El motivo de esta nueva guía de instalación tenía los siguientes propósitos:</p>
+<ul>
+<li>Configurar de la forma más sencilla y adecuada el sistema para que funcione con la mayor cantidad de programas.</li>
+<li>Lograr que funcione para todos los usuarios del sistema, incluyendo los nuevos usuarios creados tras las instalación.</li>
+<li>Superar la prueba de firma digital (con applet Java) en el sitio web de Soporte Firma Digital con el navegador Mozilla Firefox (solamente funciona hasta la versión 52 ESR).</li>
+</ul>
+<h2>Instalación de las dependencias</h2>
+<ul>
+<li>Instalar el soporte CCID de PC/SC para que reconozca el lector de tarjetas y el plugin NPAPI IcedTea-Web para poder cargar el applet Java que permite firmar desde el navegador Firefox:</li>
+</ul>
+<pre>sudo apt -y install pcscd icedtea-plugin
+</pre>
+<h2>Descarga del “instalador”</h2>
+<ul>
+<li>Descargar el “instalador” en el desplegable llamado “Usuarios Linux” en la página de descarga de instaladores del sitio web de <a href="https://www.soportefirmadigital.com/">Soporte Firma Digital de Costa Rica</a>, introduciendo el número de serie de la tarjeta y el captcha.</li>
+</ul>
+<ul>
+<li>Descomprimir el archivo zip descargado con <kbd>unzip</kbd>, en el momento de escribir esta documentación se llama <kbd>sfd_ClientesLinux_Rev09.zip</kbd>. Se creará una carpeta llamada <kbd>Firma Digital</kbd>. Se asume que el archivo zip se ha descargado en la carpeta <kbd>Descargas</kbd>:</li>
+</ul>
+<pre>
+cd ~/Descargas
+
+unzip sfd_ClientesLinux_Rev09.zip
+</pre>
+<h2>Instalación de los certificados</h2>
+<p>Es necesario agregar a la lista de confianza la jerarquía de certificados del SINPE y del MICITT. Para ello, un conjunto de comandos:</p>
+<ul>
+<li>Copiar los certificados:</li>
+</ul>
+<pre>sudo cp Descargas/Firma\ Digital/Certificados/* /usr/local/share/ca-certificates/
+
+sudo rename.ul .cer .crt /usr/local/share/ca-certificates/*.cer
+
+for file in /usr/local/share/ca-certificates/*.crt; do sudo openssl x509 -inform DER -in "$file" -out "$file"; done 2&gt;/dev/null
+</pre>
+<ul>
+<li>Regenerar los archivos de certificados para todas las aplicaciones:</li>
+</ul>
+<pre>sudo update-ca-certificates --fresh
+</pre>
+<h2>Instalación del módulo PKCS#11</h2>
+<p>Aunque hay un módulo en el directorio <kbd>Librerías</kbd>, no es la versión más reciente y tiene varios defectos de enlazado. La versión distribuida en el paquete PinTool es más reciente y funciona correctamente en todos los programas probados. En el siguiente proceso se extrae y se instala conservando la fecha original de la librería y con los permisos correctos de usuario.</p>
+<ul>
+<li>Instalar el módulo PKCS#11 propietario en <kbd>/usr/lib/pkcs11</kbd>:</li>
+</ul>
+<pre>
+cd ~/Descargas/Firma\ Digital/PinTool/IDProtect\ PINTool\ 6.41.01/DEB
+
+ar p idprotectclient_641.01-0_amd64.deb data.tar.gz | tar zx ./usr/lib/x64-athena/libASEP11.so
+
+sudo mv usr/lib/x64-athena/libASEP11.so /usr/lib/x86_64-linux-gnu/pkcs11/
+
+sudo chown root:root /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so
+</pre>
+<ul>
+<li>Crear los siguientes enlaces simbólicos (necesarios para que funcionen algunos programas y applets):</li>
+</ul>
+<pre>sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/x86_64-linux-gnu/
+
+sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/
+
+sudo mkdir -p /usr/lib/x64-athena/
+
+sudo ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /usr/lib/x64-athena/
+</pre>
+<ul>
+<li>Si se va a trabajar con el applet de la CCSS se puede realizar el siguiente paso opcional:</li>
+</ul>
+<pre>
+# mkdir -p /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/lib/x86_64-linux-gnu/pkcs11/libASEP11.so /Firma_Digital/LIBRERIAS/
+
+# ln -s /usr/local/share/ca-certificates/ /Firma_Digital/CERTIFICADOS
+</pre>
+<ul>
+<li>Crear el fichero /etc/Athena/IDPClientDB.xml y abrirlo para edición:</li>
+</ul>
+<pre>sudo mkdir /etc/Athena/
+
+sudo gedit /etc/Athena/IDPClientDB.xml
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;IDProtect&gt;
+ &lt;TokenLibs&gt;
+  &lt;IDProtect&gt;
+   &lt;Cards&gt;
+    &lt;IDProtectXF&gt;
+     &lt;ATR type='hexBinary'&gt;3BDC00FF8091FE1FC38073C821106600000000000000&lt;/ATR&gt;
+     &lt;ATRMask type='hexBinary'&gt;FFFF00FFF0FFFFFFFFFFFFFFFFF0FF00000000000000&lt;/ATRMask&gt;
+    &lt;/IDProtectXF&gt;
+   &lt;/Cards&gt;
+  &lt;/IDProtect&gt;
+ &lt;/TokenLibs&gt;
+&lt;/IDProtect&gt;
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/etc/pkcs11/modules/firmadigital.module</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>sudo mkdir -p /etc/pkcs11/modules/
+
+sudo gedit /etc/pkcs11/modules/firmadigital.module
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>module: libASEP11.so
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/usr/local/sbin/update-p11-kit-symlinks</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>sudo gedit /usr/local/sbin/update-p11-kit-symlinks
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>#!/bin/sh
+
+FIREFOX_LIB=/usr/lib/firefox/libnssckbi.so
+THUNDERBIRD_LIB=/usr/lib/thunderbird/libnssckbi.so
+
+if ! [ -L "$FIREFOX_LIB" ]
+then
+    echo "Firefox libnssckbi.so is not a symlink. Fixing..."
+    mv -f "$FIREFOX_LIB" "$FIREFOX_LIB".bak
+    ln -s /usr/lib/x86_64-linux-gnu/p11-kit-proxy.so "$FIREFOX_LIB"
+fi
+
+if ! [ -L "$THUNDERBIRD_LIB" ]
+then
+    echo "Thunderbird libnssckbi.so is not a symlink. Fixing..."
+    mv -f "$THUNDERBIRD_LIB" "$THUNDERBIRD_LIB".bak
+    ln -s /usr/lib/x86_64-linux-gnu/p11-kit-proxy.so "$THUNDERBIRD_LIB"
+fi
+</pre>
+<ul>
+<li>Agregar el atributo de ejecutable al script:</li>
+</ul>
+<pre>sudo chmod +x /usr/local/sbin/update-p11-kit-symlinks
+</pre>
+<ul>
+<li>Crear un fichero llamado <kbd>/etc/systemd/system/p11-kit-proxy-updater.service</kbd> y abrirlo para edición:</li>
+</ul>
+<pre>sudo gedit /etc/systemd/system/p11-kit-proxy-updater.service 
+</pre>
+<ul>
+<li>En la ventana del editor de textos gedit, pegar el siguiente texto, guardar y cerrar el editor:</li>
+</ul>
+<pre>[Unit]
+Description=mantenimiento de enlaces a p11-kit-proxy
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/update-p11-kit-symlinks
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+<p>Activar el servicio al arranque y ejecutarlo una primera vez para comprobar que funciona:</p>
+<pre>sudo systemctl enable p11-kit-proxy-updater.service
+
+sudo systemctl start p11-kit-proxy-updater.service
+</pre>
+<p>Eso es todo. Es necesario reiniciar Firefox, Thunderbird y cualquier otra aplicación que use certificados para que se apliquen los cambios. Si se ha insertado el lector y la tarjeta al lector, estas aplicaciones preguntarán por el PIN, lo que indicará que se la instalación ha sido exitosa.</p>
+<p>En Firefox (hasta la versión 51 y la 52 ESR) ya se puede ir a realizar la prueba en el enlace “Verificación de Capacidad de Firma” del sitio web de Soporte Firma Digital de Costa Rica mencionado anteriormente y debería pasarla con éxito. En el navegador aparecerá que se quiere ejecutar “IcedTea-Web”, hay que permitirlo. Si el navegador hace preguntas sobre el applet responder afirmativamente y aceptar a todos los cuadros de mensaje que aparezcan e ingresar el PIN cuando lo solicite.</p>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/postsprogramar20microcontrolador20stm322/" class="u-url">Como programar un microcontrolador stm32 con cpp</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/postsprogramar20microcontrolador20stm322/" rel="bookmark"><time class="published dt-published" datetime="2015-12-28T05:12:00-06:00" title="2015-12-28 05:12">2015-12-28 05:12</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<h2>Que se necesita</h2>
+<ul>
+<li>Microcontrolador STM322</li>
+<li>GDB o un debugger, editor de texto o IDE</li>
+<li>Una maquina con Linux</li>
+</ul>
+<h2>Requerimientos con Gnu/Linux</h2>
+<ul>
+<li>arm-none-eabi-gcc – The GNU Compiler Collection – cross compilador para ARM EABI (directo en el procesador)</li>
+<li>arm-none-eabi-gdb – The GNU Debugger for the ARM EABI (bare-metal) target</li>
+<li>arm-none-eabi-binutils – A set of programs to assemble and manipulate binary and object files for the ARM EABI (bare-metal) target</li>
+<li>openocd – Debugging, in-system programming and boundary-scan testing for embedded target devices</li>
+<li>vim – Editor de texto</li>
+</ul>
+<h2>Terminos importantes</h2>
+<p>CMSIS = Cortex Microcontroller Software Interface Standard <a href="http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php">info</a></p>
+<h2>Referencias</h2>
+<p>http://regalis.com.pl/en/arm-cortex-stm32-gnulinux/</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/laferiacr/" class="u-url">laferia.cr</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/laferiacr/" rel="bookmark"><time class="published dt-published" datetime="2015-10-11T13:04:31-06:00" title="2015-10-11 13:04">2015-10-11 13:04</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<h2>Necesidad</h2>
+<p>En este momento de la historia, en la mayoría de los casos el consumidor no conoce el origen de los productos. Con una plataforma que brinde la posibilidad de compartir información entre productores y consumidores, se pueden solucionar varios problemas que presenta esta cadena de consumo.</p>
+<h2>Plataforma</h2>
+<p>Una plataforma, diseñada para compartir información entre productores, proveedores y consumidores, fue creada en Australia por la fundación Open Food Network.</p>
+<p>Esta plataforma permite conocer el origen de los productos, la situación del productor, métodos de producción y otros factores que pueden tener alto impacto en la decisión del consumidor de orientarse a un producto o a otro.</p>
+<p><a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=q1S2DfuiEh4" target="_blank"><img src="http://img.youtube.com/vi/q1S2DfuiEh4/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10"></a> </p>
+
+<h2>Avance</h2>
+<p>Por el momento lo que hemos logrado:</p>
+<ul>
+<li>Comprar el dominio</li>
+<li>Configurar ofn en ubuntu 14.04</li>
+<li>Necesitamos alguien con experiencia en ruby y rails para que revise</li>
+<li>Tenemos un ambiente de pruebas</li>
+</ul>
+<h2>Instalación</h2>
+<h3>Ambiente de Producción</h3>
+<ol>
+<li>Agregar el "Host" a la configuración de la Base de datos en <code>config/database.yml</code>:</li>
+</ol>
+<pre class="code literal-block"><span></span><span class="n">production</span><span class="o">:</span>
+  <span class="n">adapter</span><span class="o">:</span> <span class="n">postgresql</span>
+  <span class="n">encoding</span><span class="o">:</span> <span class="n">unicode</span>
+  <span class="n">database</span><span class="o">:</span> <span class="n">open_food_network_prod</span>
+  <span class="n">pool</span><span class="o">:</span> <span class="mi">5</span>
+  <span class="n">host</span><span class="o">:</span> <span class="n">localhost</span>
+  <span class="n">username</span><span class="o">:</span> <span class="n">ofn_user</span>
+  <span class="n">password</span><span class="o">:</span> <span class="n">toor</span>
+</pre>
+
+
+<ol>
+<li>Crear la base de datos:</li>
+</ol>
+<pre class="code literal-block"><span></span>/opt/openfoodnetwork/www# RAILS_ENV=production rake db:schema:load db:seed
+</pre>
+
+
+<ol>
+<li>Precompilar los activos en el ambiente de producción:</li>
+</ol>
+<pre class="code literal-block"><span></span>/opt/openfoodnetwork/www# RAILS_ENV=production rake assets:clean
+/opt/openfoodnetwork/www# RAILS_ENV=production rake assets:precompile
+</pre>
+
+
+<ol>
+<li>Correr Unicorn en producción manualmente</li>
+</ol>
+<pre class="code literal-block"><span></span> cd /opt/openfoodnetwork/www &amp;&amp; bundle exec unicorn -c ../shared/config/unicorn.rb -E production -D
+</pre>
+
+
+<h2>Solucion de Problemas</h2>
+<ul>
+<li>Información del Log de Unicorn:</li>
+</ul>
+<pre class="code literal-block"><span></span>$ tail -f /opt/openfoodnetwork/shared/log/unicorn.log
+</pre>
+
+
+<ul>
+<li>
+<p>Encontrar la ubicación del Unix Socket en /opt/openfoodnetwork/shared/config/unicorn.rb</p>
+</li>
+<li>
+<p>Verificar que el Unix socket se encuentre creado:</p>
+</li>
+</ul>
+<pre class="code literal-block"><span></span>$ ls -lah /tmp/unicorn.openfoodnetwork.sock
+</pre>
+
+
+<ul>
+<li>Verificar que Unicorn esté corriendo:</li>
+</ul>
+<pre class="code literal-block"><span></span>$ ps aux <span class="p">|</span> grep unicorn
+</pre>
+
+
+<h2>Referencias</h2>
+<p>(1) http://teotti.com/use-of-rails-environments/
+(2) https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-unicorn-and-nginx-on-ubuntu-14-04</p>
+</div>
+    </div>
+    </article><article class="h-entry post-"><header><h1 class="p-name entry-title"><a href="posts/postsutilizar-nikola/" class="u-url">Utilizar Nikola por primera vez</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                JáquerEspeis
+            </span></p>
+            <p class="dateline"><a href="posts/postsutilizar-nikola/" rel="bookmark"><time class="published dt-published" datetime="2015-08-21T05:08:00-06:00" title="2015-08-21 05:08">2015-08-21 05:08</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<h2>Instalación</h2>
+<p>La forma mas simple de instalar Nikola es con pip y virtual, también se podría utilizar uno de los paquetes de la distribución que se este utilizando, en si son usuarios de Linux.</p>
+<p>En el directorio del repositorio del sitio</p>
+<pre class="code literal-block"><span></span>virtualenv --python=python3 .env
+source .env/bin/activate
+pip3 install --upgrade "Nikola[extras]"
+</pre>
+
+
+<h3>Primeros usos</h3>
+<p>En este momento se tiene el sistema instalado, ahora hay que crear el contenido del primer sitio de prueba, estando en el directorio que va a mantener el código, se ejecuta el comando <code>nikola init --demo .</code>, luego se debe de construir el sitio con el comando <code>nikola build</code>.</p>
+<p>El siguiente paso es ver el sitio, para lo que va a utilizar el comando <code>nikola serve -b</code>, pero es mucho mas fácil utilizar <code>nikola auto -b</code> para reconstrucciones automáticas.</p>
+<h2>Utilizar markdown</h2>
+<p>Para utilizar markdown para crear los post se debe usar uno de los múltiples lenguajes de marcado ligero soportado, para eso se debe de editar el archivo config.py en la raíz del sitio en Nikola.</p>
+<p>Primero se debe de verificar que este en la estructura <strong>COMPILERS</strong></p>
+<pre class="code literal-block"><span></span># 'rest' is reStructuredText
+# 'markdown' is MarkDown
+# 'html' assumes the file is HTML and just copies it
+COMPILERS = {
+    "rest": ('.rst', '.txt'),
+    "markdown": ('.md', '.mdown', '.markdown'),
+    "textile": ('.textile',),
+    "txt2tags": ('.t2t',),
+    "bbcode": ('.bb',),
+    #"wiki": ('.wiki',),
+    "ipynb": ('.ipynb',),
+    "html": ('.html', '.htm'),
+    # PHP files are rendered the usual way (i.e. with the full templates).
+    # The resulting files have .php extensions, making it possible to run
+    # them without reconfiguring your server to recognize them.
+    "php": ('.php',),
+    # Pandoc detects the input from the source filename
+    # but is disabled by default as it would conflict
+    # with many of the others.
+    # "pandoc": ('.rst', '.md', '.txt'),
+}
+</pre>
+
+
+<p>Luego se debe de agregar a la estructura del tipo de entrada, en el ejemplo de abajo se agregó la linea, <code>("posts/*.md", "posts", "post.tmpl")</code> a los dos tipos de entras <strong>POST</strong> y <strong>PAGES</strong>.</p>
+<pre class="code literal-block"><span></span><span class="n">POSTS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s2">"posts/*.rst"</span><span class="p">,</span> <span class="s2">"posts"</span><span class="p">,</span> <span class="s2">"post.tmpl"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"posts/*.txt"</span><span class="p">,</span> <span class="s2">"posts"</span><span class="p">,</span> <span class="s2">"post.tmpl"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"posts/*.md"</span><span class="p">,</span> <span class="s2">"posts"</span><span class="p">,</span> <span class="s2">"post.tmpl"</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">PAGES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s2">"stories/*.rst"</span><span class="p">,</span> <span class="s2">"stories"</span><span class="p">,</span> <span class="s2">"story.tmpl"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"stories/*.txt"</span><span class="p">,</span> <span class="s2">"stories"</span><span class="p">,</span> <span class="s2">"story.tmpl"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"stories/*.md"</span><span class="p">,</span> <span class="s2">"stories"</span><span class="p">,</span> <span class="s2">"story.tmpl"</span><span class="p">),</span>
+<span class="p">)</span>
+</pre>
+
+
+<h2>Utilizar locales para Costa Rica</h2>
+<p>Este proceso debería funcionar para la mayoría de idiomas.</p>
+<ol>
+<li>Generar el locale necesario con `locale-get <locale></locale>
+</li>
+<li>Definir cual es el locale que debe de utilizar Nikola por defecto.</li>
+</ol>
+<pre class="code literal-block"><span></span><span class="c1"># What is the default language?</span>
+<span class="n">DEFAULT_LANG</span> <span class="o">=</span> <span class="s2">"es"</span>
+
+<span class="c1"># What other languages do you have?</span>
+<span class="c1"># The format is {"translationcode" : "path/to/translation" }</span>
+<span class="c1"># the path will be used as a prefix for the generated pages location</span>
+<span class="n">TRANSLATIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">DEFAULT_LANG</span><span class="p">:</span> <span class="s2">"es_CR"</span><span class="p">,</span>
+    <span class="c1"># Example for another language:</span>
+    <span class="c1"># "es": "./es",</span>
+    <span class="s2">"es"</span><span class="p">:</span> <span class="s2">"./"</span><span class="p">,</span>
+    <span class="s2">"en"</span><span class="p">:</span> <span class="s2">"./en"</span><span class="p">,</span>
+<span class="p">}</span>
+</pre>
+
+
+<ol>
+<li>Definir el locale que se va a utilizar para <code>es</code>, por defecto es <code>es_ES</code>.</li>
+</ol>
+<pre class="code literal-block"><span></span><span class="n">LOCALES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"es"</span><span class="p">:</span><span class="s2">"es_CR.utf-8"</span><span class="p">,</span>
+        <span class="p">}</span>
+</pre>
+
+
+<p>El locale a utilizar puede ser probado, importando locale <code>import locale</code> y llamando al locale necesario <code>locale.setlocale(locale.LC_ALL, 'es_CR.utf-8')</code></p>
+</div>
+    </div>
+    </article>
+</div>
+
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="index-2.html" rel="prev">Newer posts</a>
+            </li>
+        </ul></nav>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>Publicado bajo una licencia <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.
+ - Creado con <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(1, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>
