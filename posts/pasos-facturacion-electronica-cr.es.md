@@ -6,8 +6,8 @@ Cualquier persona puede voluntariamente facturar electrónicamente pero hay un c
 
 Si no recuerdan en cuál actividad están inscritos, pueden confirmarlo y saber su código de actividad con su número de cédula (física o jurídica) [aquí](https://www.hacienda.go.cr/ATV/frmConsultaSituTributaria.aspx)
 
-Si desean saber más sobre el fundamento legal del cambio, [aquí](http://www.hacienda.go.cr/contenido/14350-factura-electronica y http://www.hacienda.go.cr/contenido/13383-requisitos-de-las-facturas-o-comprobantes-de-ingresos)
- hay referencia a las resoluciones 
+Si desean saber más sobre el fundamento legal del cambio, el documento [factura electrónica](http://www.hacienda.go.cr/contenido/14350-factura-electronica) y los [requisitos](http://www.hacienda.go.cr/contenido/13383-requisitos-de-las-facturas-o-comprobantes-de-ingresos), dan referencia a las resoluciones.
+
 El primero paso es en la Adiminstración Tributaria Virtual https://www.hacienda.go.cr/ATV/Login.aspx, igresando con su usuario y clave
 
 ![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/login.png)
