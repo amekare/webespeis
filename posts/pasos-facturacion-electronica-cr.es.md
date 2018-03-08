@@ -8,7 +8,7 @@ Si no recuerdan en cuál actividad están inscritos, pueden confirmarlo y saber 
 
 Si desean saber más sobre el fundamento legal del cambio, el documento [factura electrónica](http://www.hacienda.go.cr/contenido/14350-factura-electronica) y los [requisitos](http://www.hacienda.go.cr/contenido/13383-requisitos-de-las-facturas-o-comprobantes-de-ingresos), dan referencia a las resoluciones.
 
-El primero paso es en la Adiminstración Tributaria Virtual https://www.hacienda.go.cr/ATV/Login.aspx, igresando con su usuario y clave
+El primero paso es en la Adminstración [Tributaria Virtual](https://www.hacienda.go.cr/ATV/Login.aspx), igresando con su usuario y clave
 
 ![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/login.png)
 
@@ -22,21 +22,26 @@ Si van a llamar, pues paciencia.. mucha paciencia... http://www.hacienda.go.cr/d
 
 Si tienen su tarjeta virtual, digitan los códigos requeridos
 
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/confirmar-tarjeta.png)
+
 
 Una vez ingresados en la ATV, seleccionan si facturarán como personas físicas el perfil de obligado tributario. Si es como personas jurídicas (una sociedad anónima, por ejemplo), el perfil de representante legal. 
 
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/seleccion-perfil.png)
 
 
 Listo. Ojo que solo en el muñequito verde se activa el enlace.
 
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/seleccion-perfil2.png)
+
 
 Ingresados, seleccionan generar llave criptográfica.Eso se almacena en su equipo. Si van a compartir su computadora con varias, cada uno con su sesión y usuario, seleccionan este usuario, sino todos los usuarios.
 
-
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/generar-llave-privada.png)
 
 Luego de generar la llave, deben hacer un usuario y clave para envío de facturas, en ese mismo menú. Genera en pantalla un usuario y una clave. RE IMPORTANTE GUARDARLAS porque será necesaria para el último paso de la facturación (Enviar xml firmado)
 
-
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/generar-contrasena.png)
 
 Hay un video sobre cómo se genera y revoca la llave criptográfica y la clave y usuario https://www.youtube.com/watch?v=elhHdEUechs
 
@@ -44,6 +49,8 @@ El tercer paso, luego de la llave y del usuario y clave para envío de facturas 
 
 
 Con la llave, el usuario y clave y el firmador se puede ya pasar a facturar en el menú de Comprobantes Electrónicos (no se han salido del ATV, ¿cierto?) 
+
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/facturar.png)
 
 
 Ahora sí, a facturar: sus datos como emisor (sucursal sin descripción, sucursal 1 y caja 1 si no tienen realmente varias sucursales y cajas registradoras..), los de la persona que recibirá la factura o receptor  (cédula)...
@@ -53,28 +60,32 @@ Es de suma importancia que coloquen en la factura electrónica la información d
 En el encabezado si es factura electrónica (o notas) y si es de contado y la moneda. Al guardar encabezado se abre el detalle de la factura que llenarán línea por línea.
 
 Para la factura electrónica pueden usar códigos o solamente rellenar la descripción del servicio en “Descripción de la línea”, más la unidad de medida (SP), la cantidad y el precio y guardan la línea. Si son servicios será uno, claro, salvo que sean con precio por unidad.
+
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/guardar-linea.png)
  
-
-
-
 Una vez hecha la factura electrónica, deben solicitar validarla (aceptar)
+
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/uno-dos.png)
 
 
 Con la factura electrónica validada se genera una clave del documento (HASH) que hay que pegar en el firmador (ya vamos a eso) copiándola
 
-
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/copiar-hash.png)
 
 Con ese HASH copiado, abrimos el firmador (MHFirma_Electrónica) que ya debieron de haber instalado, pegar HASH y firmar, sea con firma digital o llave crIptográfica
 
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/uno-dos-o-otrodos.png)
 
 Una vez firmada, se envía el XML firmado y eso genera una factura electrónica lista en pdf para ser enviada al cliente
+
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/enviar-xml-firmado.png)
 
 
 Si están obligados a emitir este tipo de comprobantes y no lo hacen, la sanción es de dos Salarios Base (Salario Base cambia año a año; en 2018 es C. 431.000) Ver http://www.hacienda.go.cr/docs/58b8330a02620_Infraccionesysanciones.pdf
 
 Si el sistema falla y no pueden emitir comprobantes pueden darle otro o factura pre-impresa (las de antes, advirtiendo que es temporal. http://www.hacienda.go.cr/docs/5a6f9e6a95922_Paso%20a%20Paso%20Comprobantes%20Electronicos.pdf
 
-
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/cuando-utilice.png)
 
 Si desean leer la historia larga de la facturación electrónica está en un manual de Tributación en este enlace http://www.hacienda.go.cr/docs/5a550c170342c_Manual%20de%20uso%20de%20la%20Herramienta%20Gratuita%20de%20Facturacion.pdf
 
