@@ -96,3 +96,10 @@ Es importante hacer notar que además de estas evidentes complicaciones y dificu
 Hecho por Ignacio Alfaro Marín
 Publicado en https://twitter.com/instantepasado/status/971777192819679232
 
+Sígueme en [![alt text][1.1]][1] [![alt text][2.1]][2]
+
+[1.1]: http://i.imgur.com/tXSoThF.png
+[2.1]: http://i.imgur.com/0o48UoR.png
+
+[1]: http://www.twitter.com/instantepasado
+[2]: http://www.github.com/ignacioalmar
