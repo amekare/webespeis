@@ -1,11 +1,13 @@
+# Pasos para facturación electrónica
+
 Para quienes deseen usar la plataforma gratuita de facturación electrónica, hice una guía en este hilo que espero les ayude a aprender en menos tiempo que lo que me tomó a mí entenderlo #FacturaciónElectrónica
 
-Cualquier persona puede voluntariamente facturar electrónicamente pero hay un calendario de obligaciones por sector productivos o giro comercial según su código de inscripción en Tributación. Véanlo aquí: http://www.hacienda.go.cr/docs/59cebb7657f59_Aviso%20Comunicacion%20uso%20de%20comprobantes%20electronico.pdf
+Cualquier persona puede voluntariamente facturar electrónicamente pero hay un calendario de obligaciones por sector productivos o giro comercial según su código de inscripción en Tributación. Véanlo [aquí](http://www.hacienda.go.cr/docs/59cebb7657f59_Aviso%20Comunicacion%20uso%20de%20comprobantes%20electronico.pdf)
 
-Si no recuerdan en cuál actividad están inscritos, pueden confirmarlo y saber su código de actividad con su número de cédula (física o jurídica) aquí: https://www.hacienda.go.cr/ATV/frmConsultaSituTributaria.aspx
+Si no recuerdan en cuál actividad están inscritos, pueden confirmarlo y saber su código de actividad con su número de cédula (física o jurídica) [aquí](https://www.hacienda.go.cr/ATV/frmConsultaSituTributaria.aspx)
 
-Si desean saber más sobre el fundamento legal del cambio, aquí hay referencia a las resoluciones http://www.hacienda.go.cr/contenido/14350-factura-electronica y http://www.hacienda.go.cr/contenido/13383-requisitos-de-las-facturas-o-comprobantes-de-ingresos
-
+Si desean saber más sobre el fundamento legal del cambio, [aquí](http://www.hacienda.go.cr/contenido/14350-factura-electronica y http://www.hacienda.go.cr/contenido/13383-requisitos-de-las-facturas-o-comprobantes-de-ingresos)
+ hay referencia a las resoluciones 
 El primero paso es en la Adiminstración Tributaria Virtual https://www.hacienda.go.cr/ATV/Login.aspx, igresando con su usuario y clave
 
 ![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/login.png)
