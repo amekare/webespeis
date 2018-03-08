@@ -8,6 +8,7 @@ Si desean saber más sobre el fundamento legal del cambio, aquí hay referencia 
 
 El primero paso es en la Adiminstración Tributaria Virtual https://www.hacienda.go.cr/ATV/Login.aspx, igresando con su usuario y clave
 
+![Imagen de login](https://github.com/ignacioalmar/webespeis/blob/guia-hacienda/posts/img/pasos-facturacion-electronica-cr/login.png)
 
 Si perdieron alguno de estos datos pueden recuperarlo al correo con el que se registraron o por sms al teléfono indicando fecha de nacimiento y de vencimiento (de la cédula), no vencimiento de ustedes.
 
