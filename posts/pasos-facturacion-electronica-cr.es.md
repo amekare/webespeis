@@ -1,4 +1,3 @@
-Texto de ignacio
 Para quienes deseen usar la plataforma gratuita de facturación electrónica, hice una guía en este hilo que espero les ayude a aprender en menos tiempo que lo que me tomó a mí entenderlo #FacturaciónElectrónica
 
 Cualquier persona puede voluntariamente facturar electrónicamente pero hay un calendario de obligaciones por sector productivos o giro comercial según su código de inscripción en Tributación. Véanlo aquí: http://www.hacienda.go.cr/docs/59cebb7657f59_Aviso%20Comunicacion%20uso%20de%20comprobantes%20electronico.pdf
